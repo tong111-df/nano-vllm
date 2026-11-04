@@ -16,6 +16,8 @@ class Config:
     eos: int = -1
     kvcache_block_size: int = 256
     num_kvcache_blocks: int = -1
+    scheduling_policy: str = "prefill_first"
+    max_consecutive_prefills: int = 2
 
     def __post_init__(self):
         assert os.path.isdir(self.model)

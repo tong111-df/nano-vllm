@@ -1,6 +1,10 @@
-from collections import deque
+from __future__ import annotations
 
-from nanovllm.config import Config
+from collections import deque
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from nanovllm.config import Config
 from nanovllm.engine.sequence import Sequence, SequenceStatus
 from nanovllm.engine.block_manager import BlockManager
 
@@ -15,6 +19,22 @@ class Scheduler:
         self.block_manager = BlockManager(config.num_kvcache_blocks, config.kvcache_block_size)
         self.waiting: deque[Sequence] = deque()
         self.running: deque[Sequence] = deque()
+        self.scheduling_policy = getattr(
+            config, "scheduling_policy", "prefill_first"
+        )
+        self.max_consecutive_prefills = getattr(
+            config, "max_consecutive_prefills", 2
+        )
+
+        if self.scheduling_policy not in ("prefill_first", "bounded_prefill"):
+            raise ValueError("Unknown scheduling_policy")
+        if (
+            type(self.max_consecutive_prefills) is not int
+            or self.max_consecutive_prefills < 1
+        ):
+            raise ValueError("max_consecutive_prefills must be a positive integer")
+
+        self.consecutive_prefills = 0
 
     def is_finished(self):
         return not self.waiting and not self.running
@@ -25,9 +45,27 @@ class Scheduler:
     def schedule(self) -> tuple[list[Sequence], bool]:
         scheduled_seqs = []
         num_batched_tokens = 0
+        had_running = bool(self.running)
+
+        # 没有 Decode 请求等待时，不累计让行次数。
+        if not had_running:
+            self.consecutive_prefills = 0
+
+        force_decode = (
+            self.scheduling_policy == "bounded_prefill"
+            and had_running
+            and self.consecutive_prefills >= self.max_consecutive_prefills
+            # A partial Prefill may hold the block that Decode needs. Do not
+            # force Decode unless at least one running request can progress.
+            and any(self.block_manager.can_append(seq) for seq in self.running)
+        )
 
         # prefill
-        while self.waiting and len(scheduled_seqs) < self.max_num_seqs:
+        while (
+            not force_decode
+            and self.waiting
+            and len(scheduled_seqs) < self.max_num_seqs
+        ):
             seq = self.waiting[0]
             remaining = self.max_num_batched_tokens - num_batched_tokens
             if remaining == 0:
@@ -52,6 +90,8 @@ class Scheduler:
             scheduled_seqs.append(seq)
 
         if scheduled_seqs:
+            if had_running:
+                self.consecutive_prefills += 1
             return scheduled_seqs, True
 
         # decode
@@ -70,6 +110,7 @@ class Scheduler:
                 scheduled_seqs.append(seq)
         assert scheduled_seqs
         self.running.extendleft(reversed(scheduled_seqs))
+        self.consecutive_prefills = 0
         return scheduled_seqs, False
 
     def preempt(self, seq: Sequence):

@@ -1,0 +1,335 @@
+{
+  "upstream_base": "bb823b3e06983d71485a8e1f23715ebd87d98ef8",
+  "python": "3.12.13",
+  "platform": "Windows",
+  "config": {
+    "prefill_budget": 2,
+    "block_size": 256,
+    "blocks": 4,
+    "max_num_seqs": 4,
+    "max_consecutive_prefills": 2
+  },
+  "note": "Synthetic model outputs; round 0 is setup. No GPU timing measured.",
+  "source_sha256": {
+    "nanovllm/config.py": "c4bce4ad550efaa272b9e358e1ebdd546696b4a3f0713f43166bacb2b982a706",
+    "nanovllm/engine/scheduler.py": "312956f8b295d120f6fb4fce9b65d52b45d0e0f967c139e5764eb9f9e7db56bd",
+    "nanovllm/engine/block_manager.py": "5cf5826673f93e94bb8b7fddef60cfc9063dbd18ee7f7171c3210fb471b3082f",
+    "nanovllm/engine/sequence.py": "ab8ca6f1a287ee541a29f6c145d9a7cf5c9f0d598f9e74eae6f714b6f464aff8",
+    "experiments/day3_compare.py": "427df94674a3a742e4676c18a2af9e0cad297f44c418e86a5b2a95e54b6a942c",
+    "requirements-cpu.txt": "709fcd6e643401ed96a708e8567775ea6aa0b76b27c7a92667cd1499f42af6ce"
+  },
+  "cases": [
+    {
+      "policy": "prefill_first",
+      "A_first_decode_round": 4,
+      "B_first_token_round": 3,
+      "finish_rounds": {
+        "A": 5,
+        "B": 3
+      },
+      "trace": [
+        {
+          "round": 0,
+          "before": {
+            "waiting": [
+              "A"
+            ],
+            "running": [],
+            "consecutive_prefills": 0
+          },
+          "phase": "prefill",
+          "scheduled_tokens": {
+            "A": 1
+          },
+          "consecutive_prefills_after": 0,
+          "completion_counts_after": {
+            "A": 1,
+            "B": 0
+          },
+          "states_after": {
+            "A": "RUNNING",
+            "B": "WAITING"
+          }
+        },
+        {
+          "round": 1,
+          "before": {
+            "waiting": [
+              "B"
+            ],
+            "running": [
+              "A"
+            ],
+            "consecutive_prefills": 0
+          },
+          "phase": "prefill",
+          "scheduled_tokens": {
+            "B": 2
+          },
+          "consecutive_prefills_after": 1,
+          "completion_counts_after": {
+            "A": 1,
+            "B": 0
+          },
+          "states_after": {
+            "A": "RUNNING",
+            "B": "WAITING"
+          }
+        },
+        {
+          "round": 2,
+          "before": {
+            "waiting": [
+              "B"
+            ],
+            "running": [
+              "A"
+            ],
+            "consecutive_prefills": 1
+          },
+          "phase": "prefill",
+          "scheduled_tokens": {
+            "B": 2
+          },
+          "consecutive_prefills_after": 2,
+          "completion_counts_after": {
+            "A": 1,
+            "B": 0
+          },
+          "states_after": {
+            "A": "RUNNING",
+            "B": "WAITING"
+          }
+        },
+        {
+          "round": 3,
+          "before": {
+            "waiting": [
+              "B"
+            ],
+            "running": [
+              "A"
+            ],
+            "consecutive_prefills": 2
+          },
+          "phase": "prefill",
+          "scheduled_tokens": {
+            "B": 1
+          },
+          "consecutive_prefills_after": 3,
+          "completion_counts_after": {
+            "A": 1,
+            "B": 1
+          },
+          "states_after": {
+            "A": "RUNNING",
+            "B": "FINISHED"
+          }
+        },
+        {
+          "round": 4,
+          "before": {
+            "waiting": [],
+            "running": [
+              "A"
+            ],
+            "consecutive_prefills": 3
+          },
+          "phase": "decode",
+          "scheduled_tokens": {
+            "A": 1
+          },
+          "consecutive_prefills_after": 0,
+          "completion_counts_after": {
+            "A": 2,
+            "B": 1
+          },
+          "states_after": {
+            "A": "RUNNING",
+            "B": "FINISHED"
+          }
+        },
+        {
+          "round": 5,
+          "before": {
+            "waiting": [],
+            "running": [
+              "A"
+            ],
+            "consecutive_prefills": 0
+          },
+          "phase": "decode",
+          "scheduled_tokens": {
+            "A": 1
+          },
+          "consecutive_prefills_after": 0,
+          "completion_counts_after": {
+            "A": 3,
+            "B": 1
+          },
+          "states_after": {
+            "A": "FINISHED",
+            "B": "FINISHED"
+          }
+        }
+      ]
+    },
+    {
+      "policy": "bounded_prefill",
+      "A_first_decode_round": 3,
+      "B_first_token_round": 4,
+      "finish_rounds": {
+        "A": 5,
+        "B": 4
+      },
+      "trace": [
+        {
+          "round": 0,
+          "before": {
+            "waiting": [
+              "A"
+            ],
+            "running": [],
+            "consecutive_prefills": 0
+          },
+          "phase": "prefill",
+          "scheduled_tokens": {
+            "A": 1
+          },
+          "consecutive_prefills_after": 0,
+          "completion_counts_after": {
+            "A": 1,
+            "B": 0
+          },
+          "states_after": {
+            "A": "RUNNING",
+            "B": "WAITING"
+          }
+        },
+        {
+          "round": 1,
+          "before": {
+            "waiting": [
+              "B"
+            ],
+            "running": [
+              "A"
+            ],
+            "consecutive_prefills": 0
+          },
+          "phase": "prefill",
+          "scheduled_tokens": {
+            "B": 2
+          },
+          "consecutive_prefills_after": 1,
+          "completion_counts_after": {
+            "A": 1,
+            "B": 0
+          },
+          "states_after": {
+            "A": "RUNNING",
+            "B": "WAITING"
+          }
+        },
+        {
+          "round": 2,
+          "before": {
+            "waiting": [
+              "B"
+            ],
+            "running": [
+              "A"
+            ],
+            "consecutive_prefills": 1
+          },
+          "phase": "prefill",
+          "scheduled_tokens": {
+            "B": 2
+          },
+          "consecutive_prefills_after": 2,
+          "completion_counts_after": {
+            "A": 1,
+            "B": 0
+          },
+          "states_after": {
+            "A": "RUNNING",
+            "B": "WAITING"
+          }
+        },
+        {
+          "round": 3,
+          "before": {
+            "waiting": [
+              "B"
+            ],
+            "running": [
+              "A"
+            ],
+            "consecutive_prefills": 2
+          },
+          "phase": "decode",
+          "scheduled_tokens": {
+            "A": 1
+          },
+          "consecutive_prefills_after": 0,
+          "completion_counts_after": {
+            "A": 2,
+            "B": 0
+          },
+          "states_after": {
+            "A": "RUNNING",
+            "B": "WAITING"
+          }
+        },
+        {
+          "round": 4,
+          "before": {
+            "waiting": [
+              "B"
+            ],
+            "running": [
+              "A"
+            ],
+            "consecutive_prefills": 0
+          },
+          "phase": "prefill",
+          "scheduled_tokens": {
+            "B": 1
+          },
+          "consecutive_prefills_after": 1,
+          "completion_counts_after": {
+            "A": 2,
+            "B": 1
+          },
+          "states_after": {
+            "A": "RUNNING",
+            "B": "FINISHED"
+          }
+        },
+        {
+          "round": 5,
+          "before": {
+            "waiting": [],
+            "running": [
+              "A"
+            ],
+            "consecutive_prefills": 1
+          },
+          "phase": "decode",
+          "scheduled_tokens": {
+            "A": 1
+          },
+          "consecutive_prefills_after": 0,
+          "completion_counts_after": {
+            "A": 3,
+            "B": 1
+          },
+          "states_after": {
+            "A": "FINISHED",
+            "B": "FINISHED"
+          }
+        }
+      ]
+    }
+  ]
+}

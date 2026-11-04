@@ -1,0 +1,533 @@
+{
+  "upstream_base": "bb823b3e06983d71485a8e1f23715ebd87d98ef8",
+  "python": "3.12.13",
+  "platform": "Windows",
+  "note": "Synthetic token IDs; real control-plane logic; rounds are not latency.",
+  "source_sha256": {
+    "nanovllm/engine/scheduler.py": "c13002ddac79a4cc12b61b78ebba77bb46049d1a18d54358e5fe00ab68b85ed5",
+    "nanovllm/engine/sequence.py": "ab8ca6f1a287ee541a29f6c145d9a7cf5c9f0d598f9e74eae6f714b6f464aff8",
+    "nanovllm/engine/block_manager.py": "5cf5826673f93e94bb8b7fddef60cfc9063dbd18ee7f7171c3210fb471b3082f",
+    "requirements-cpu.txt": "709fcd6e643401ed96a708e8567775ea6aa0b76b27c7a92667cd1499f42af6ce",
+    "experiments/day2_baseline.py": "f2c0f26cfd9152e059c34f72edf14cca1a465b8aa364914d3c14e1aba54bbdac"
+  },
+  "cases": [
+    {
+      "case": "long_prefill",
+      "budget": 1,
+      "A_blocked_rounds": 5,
+      "A_first_decode_round": 6,
+      "trace": [
+        {
+          "round": 0,
+          "phase": "prefill",
+          "waiting_before": [
+            "A"
+          ],
+          "running_before": [],
+          "scheduled_tokens": {
+            "A": 1
+          },
+          "states_after": {
+            "A": "RUNNING"
+          },
+          "completion_counts_after": {
+            "A": 1
+          }
+        },
+        {
+          "round": 1,
+          "phase": "prefill",
+          "waiting_before": [
+            "B"
+          ],
+          "running_before": [
+            "A"
+          ],
+          "scheduled_tokens": {
+            "B": 1
+          },
+          "states_after": {
+            "A": "RUNNING",
+            "B": "WAITING"
+          },
+          "completion_counts_after": {
+            "A": 1,
+            "B": 0
+          }
+        },
+        {
+          "round": 2,
+          "phase": "prefill",
+          "waiting_before": [
+            "B"
+          ],
+          "running_before": [
+            "A"
+          ],
+          "scheduled_tokens": {
+            "B": 1
+          },
+          "states_after": {
+            "A": "RUNNING",
+            "B": "WAITING"
+          },
+          "completion_counts_after": {
+            "A": 1,
+            "B": 0
+          }
+        },
+        {
+          "round": 3,
+          "phase": "prefill",
+          "waiting_before": [
+            "B"
+          ],
+          "running_before": [
+            "A"
+          ],
+          "scheduled_tokens": {
+            "B": 1
+          },
+          "states_after": {
+            "A": "RUNNING",
+            "B": "WAITING"
+          },
+          "completion_counts_after": {
+            "A": 1,
+            "B": 0
+          }
+        },
+        {
+          "round": 4,
+          "phase": "prefill",
+          "waiting_before": [
+            "B"
+          ],
+          "running_before": [
+            "A"
+          ],
+          "scheduled_tokens": {
+            "B": 1
+          },
+          "states_after": {
+            "A": "RUNNING",
+            "B": "WAITING"
+          },
+          "completion_counts_after": {
+            "A": 1,
+            "B": 0
+          }
+        },
+        {
+          "round": 5,
+          "phase": "prefill",
+          "waiting_before": [
+            "B"
+          ],
+          "running_before": [
+            "A"
+          ],
+          "scheduled_tokens": {
+            "B": 1
+          },
+          "states_after": {
+            "A": "RUNNING",
+            "B": "FINISHED"
+          },
+          "completion_counts_after": {
+            "A": 1,
+            "B": 1
+          }
+        },
+        {
+          "round": 6,
+          "phase": "decode",
+          "waiting_before": [],
+          "running_before": [
+            "A"
+          ],
+          "scheduled_tokens": {
+            "A": 1
+          },
+          "states_after": {
+            "A": "RUNNING",
+            "B": "FINISHED"
+          },
+          "completion_counts_after": {
+            "A": 2,
+            "B": 1
+          }
+        },
+        {
+          "round": 7,
+          "phase": "decode",
+          "waiting_before": [],
+          "running_before": [
+            "A"
+          ],
+          "scheduled_tokens": {
+            "A": 1
+          },
+          "states_after": {
+            "A": "FINISHED",
+            "B": "FINISHED"
+          },
+          "completion_counts_after": {
+            "A": 3,
+            "B": 1
+          }
+        }
+      ]
+    },
+    {
+      "case": "long_prefill",
+      "budget": 2,
+      "A_blocked_rounds": 3,
+      "A_first_decode_round": 4,
+      "trace": [
+        {
+          "round": 0,
+          "phase": "prefill",
+          "waiting_before": [
+            "A"
+          ],
+          "running_before": [],
+          "scheduled_tokens": {
+            "A": 1
+          },
+          "states_after": {
+            "A": "RUNNING"
+          },
+          "completion_counts_after": {
+            "A": 1
+          }
+        },
+        {
+          "round": 1,
+          "phase": "prefill",
+          "waiting_before": [
+            "B"
+          ],
+          "running_before": [
+            "A"
+          ],
+          "scheduled_tokens": {
+            "B": 2
+          },
+          "states_after": {
+            "A": "RUNNING",
+            "B": "WAITING"
+          },
+          "completion_counts_after": {
+            "A": 1,
+            "B": 0
+          }
+        },
+        {
+          "round": 2,
+          "phase": "prefill",
+          "waiting_before": [
+            "B"
+          ],
+          "running_before": [
+            "A"
+          ],
+          "scheduled_tokens": {
+            "B": 2
+          },
+          "states_after": {
+            "A": "RUNNING",
+            "B": "WAITING"
+          },
+          "completion_counts_after": {
+            "A": 1,
+            "B": 0
+          }
+        },
+        {
+          "round": 3,
+          "phase": "prefill",
+          "waiting_before": [
+            "B"
+          ],
+          "running_before": [
+            "A"
+          ],
+          "scheduled_tokens": {
+            "B": 1
+          },
+          "states_after": {
+            "A": "RUNNING",
+            "B": "FINISHED"
+          },
+          "completion_counts_after": {
+            "A": 1,
+            "B": 1
+          }
+        },
+        {
+          "round": 4,
+          "phase": "decode",
+          "waiting_before": [],
+          "running_before": [
+            "A"
+          ],
+          "scheduled_tokens": {
+            "A": 1
+          },
+          "states_after": {
+            "A": "RUNNING",
+            "B": "FINISHED"
+          },
+          "completion_counts_after": {
+            "A": 2,
+            "B": 1
+          }
+        },
+        {
+          "round": 5,
+          "phase": "decode",
+          "waiting_before": [],
+          "running_before": [
+            "A"
+          ],
+          "scheduled_tokens": {
+            "A": 1
+          },
+          "states_after": {
+            "A": "FINISHED",
+            "B": "FINISHED"
+          },
+          "completion_counts_after": {
+            "A": 3,
+            "B": 1
+          }
+        }
+      ]
+    },
+    {
+      "case": "long_prefill",
+      "budget": 5,
+      "A_blocked_rounds": 1,
+      "A_first_decode_round": 2,
+      "trace": [
+        {
+          "round": 0,
+          "phase": "prefill",
+          "waiting_before": [
+            "A"
+          ],
+          "running_before": [],
+          "scheduled_tokens": {
+            "A": 1
+          },
+          "states_after": {
+            "A": "RUNNING"
+          },
+          "completion_counts_after": {
+            "A": 1
+          }
+        },
+        {
+          "round": 1,
+          "phase": "prefill",
+          "waiting_before": [
+            "B"
+          ],
+          "running_before": [
+            "A"
+          ],
+          "scheduled_tokens": {
+            "B": 5
+          },
+          "states_after": {
+            "A": "RUNNING",
+            "B": "FINISHED"
+          },
+          "completion_counts_after": {
+            "A": 1,
+            "B": 1
+          }
+        },
+        {
+          "round": 2,
+          "phase": "decode",
+          "waiting_before": [],
+          "running_before": [
+            "A"
+          ],
+          "scheduled_tokens": {
+            "A": 1
+          },
+          "states_after": {
+            "A": "RUNNING",
+            "B": "FINISHED"
+          },
+          "completion_counts_after": {
+            "A": 2,
+            "B": 1
+          }
+        },
+        {
+          "round": 3,
+          "phase": "decode",
+          "waiting_before": [],
+          "running_before": [
+            "A"
+          ],
+          "scheduled_tokens": {
+            "A": 1
+          },
+          "states_after": {
+            "A": "FINISHED",
+            "B": "FINISHED"
+          },
+          "completion_counts_after": {
+            "A": 3,
+            "B": 1
+          }
+        }
+      ]
+    },
+    {
+      "case": "three_new_arrivals",
+      "budget": 2,
+      "A_blocked_rounds": 3,
+      "A_first_decode_round": 4,
+      "trace": [
+        {
+          "round": 0,
+          "phase": "prefill",
+          "waiting_before": [
+            "A"
+          ],
+          "running_before": [],
+          "scheduled_tokens": {
+            "A": 1
+          },
+          "states_after": {
+            "A": "RUNNING"
+          },
+          "completion_counts_after": {
+            "A": 1
+          }
+        },
+        {
+          "round": 1,
+          "phase": "prefill",
+          "waiting_before": [
+            "B1"
+          ],
+          "running_before": [
+            "A"
+          ],
+          "scheduled_tokens": {
+            "B1": 1
+          },
+          "states_after": {
+            "A": "RUNNING",
+            "B1": "FINISHED"
+          },
+          "completion_counts_after": {
+            "A": 1,
+            "B1": 1
+          }
+        },
+        {
+          "round": 2,
+          "phase": "prefill",
+          "waiting_before": [
+            "B2"
+          ],
+          "running_before": [
+            "A"
+          ],
+          "scheduled_tokens": {
+            "B2": 1
+          },
+          "states_after": {
+            "A": "RUNNING",
+            "B1": "FINISHED",
+            "B2": "FINISHED"
+          },
+          "completion_counts_after": {
+            "A": 1,
+            "B1": 1,
+            "B2": 1
+          }
+        },
+        {
+          "round": 3,
+          "phase": "prefill",
+          "waiting_before": [
+            "B3"
+          ],
+          "running_before": [
+            "A"
+          ],
+          "scheduled_tokens": {
+            "B3": 1
+          },
+          "states_after": {
+            "A": "RUNNING",
+            "B1": "FINISHED",
+            "B2": "FINISHED",
+            "B3": "FINISHED"
+          },
+          "completion_counts_after": {
+            "A": 1,
+            "B1": 1,
+            "B2": 1,
+            "B3": 1
+          }
+        },
+        {
+          "round": 4,
+          "phase": "decode",
+          "waiting_before": [],
+          "running_before": [
+            "A"
+          ],
+          "scheduled_tokens": {
+            "A": 1
+          },
+          "states_after": {
+            "A": "RUNNING",
+            "B1": "FINISHED",
+            "B2": "FINISHED",
+            "B3": "FINISHED"
+          },
+          "completion_counts_after": {
+            "A": 2,
+            "B1": 1,
+            "B2": 1,
+            "B3": 1
+          }
+        },
+        {
+          "round": 5,
+          "phase": "decode",
+          "waiting_before": [],
+          "running_before": [
+            "A"
+          ],
+          "scheduled_tokens": {
+            "A": 1
+          },
+          "states_after": {
+            "A": "FINISHED",
+            "B1": "FINISHED",
+            "B2": "FINISHED",
+            "B3": "FINISHED"
+          },
+          "completion_counts_after": {
+            "A": 3,
+            "B1": 1,
+            "B2": 1,
+            "B3": 1
+          }
+        }
+      ]
+    }
+  ]
+}

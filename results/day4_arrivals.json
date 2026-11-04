@@ -1,0 +1,781 @@
+{
+  "upstream_base": "bb823b3e06983d71485a8e1f23715ebd87d98ef8",
+  "python": "3.12.13",
+  "platform": "Windows",
+  "config": {
+    "budget": 2,
+    "blocks": 16,
+    "block_size": 256,
+    "max_num_seqs": 4,
+    "max_consecutive_prefills": 2
+  },
+  "workload": "A: round 0, prompt=1, output=4; B1..B6: rounds 1..6, prompt=1, output=1",
+  "units": "Scheduling rounds, not wall time. Same-round service has wait=0.",
+  "source_sha256": {
+    "experiments/day4_arrivals.py": "28003bed67c649859deeff4a96bce06227680944595a220d8844653d2038764e",
+    "nanovllm/engine/scheduler.py": "312956f8b295d120f6fb4fce9b65d52b45d0e0f967c139e5764eb9f9e7db56bd",
+    "nanovllm/engine/block_manager.py": "5cf5826673f93e94bb8b7fddef60cfc9063dbd18ee7f7171c3210fb471b3082f",
+    "nanovllm/engine/sequence.py": "ab8ca6f1a287ee541a29f6c145d9a7cf5c9f0d598f9e74eae6f714b6f464aff8",
+    "nanovllm/sampling_params.py": "1487e7efc2fee55021fa13cc4c63a19dc3e546f7131acd338ed14b9bc0d9e148",
+    "requirements-cpu.txt": "709fcd6e643401ed96a708e8567775ea6aa0b76b27c7a92667cd1499f42af6ce"
+  },
+  "cases": [
+    {
+      "policy": "prefill_first",
+      "requests": {
+        "A": {
+          "arrival_round": 0,
+          "first_token_round": 0,
+          "first_token_wait_rounds": 0,
+          "finish_round": 9,
+          "arrival_to_finish_rounds": 9,
+          "generation_rounds": [
+            0,
+            7,
+            8,
+            9
+          ],
+          "generation_gaps_rounds": [
+            7,
+            1,
+            1
+          ],
+          "decode_rounds": [
+            7,
+            8,
+            9
+          ],
+          "decode_gaps_rounds": [
+            1,
+            1
+          ]
+        },
+        "B1": {
+          "arrival_round": 1,
+          "first_token_round": 1,
+          "first_token_wait_rounds": 0,
+          "finish_round": 1,
+          "arrival_to_finish_rounds": 0,
+          "generation_rounds": [
+            1
+          ],
+          "generation_gaps_rounds": [],
+          "decode_rounds": [],
+          "decode_gaps_rounds": []
+        },
+        "B2": {
+          "arrival_round": 2,
+          "first_token_round": 2,
+          "first_token_wait_rounds": 0,
+          "finish_round": 2,
+          "arrival_to_finish_rounds": 0,
+          "generation_rounds": [
+            2
+          ],
+          "generation_gaps_rounds": [],
+          "decode_rounds": [],
+          "decode_gaps_rounds": []
+        },
+        "B3": {
+          "arrival_round": 3,
+          "first_token_round": 3,
+          "first_token_wait_rounds": 0,
+          "finish_round": 3,
+          "arrival_to_finish_rounds": 0,
+          "generation_rounds": [
+            3
+          ],
+          "generation_gaps_rounds": [],
+          "decode_rounds": [],
+          "decode_gaps_rounds": []
+        },
+        "B4": {
+          "arrival_round": 4,
+          "first_token_round": 4,
+          "first_token_wait_rounds": 0,
+          "finish_round": 4,
+          "arrival_to_finish_rounds": 0,
+          "generation_rounds": [
+            4
+          ],
+          "generation_gaps_rounds": [],
+          "decode_rounds": [],
+          "decode_gaps_rounds": []
+        },
+        "B5": {
+          "arrival_round": 5,
+          "first_token_round": 5,
+          "first_token_wait_rounds": 0,
+          "finish_round": 5,
+          "arrival_to_finish_rounds": 0,
+          "generation_rounds": [
+            5
+          ],
+          "generation_gaps_rounds": [],
+          "decode_rounds": [],
+          "decode_gaps_rounds": []
+        },
+        "B6": {
+          "arrival_round": 6,
+          "first_token_round": 6,
+          "first_token_wait_rounds": 0,
+          "finish_round": 6,
+          "arrival_to_finish_rounds": 0,
+          "generation_rounds": [
+            6
+          ],
+          "generation_gaps_rounds": [],
+          "decode_rounds": [],
+          "decode_gaps_rounds": []
+        }
+      },
+      "trace": [
+        {
+          "round": 0,
+          "queues_before": {
+            "waiting": [
+              "A"
+            ],
+            "running": []
+          },
+          "phase": "prefill",
+          "scheduled_tokens": {
+            "A": 1
+          },
+          "completion_counts_after": {
+            "A": 1
+          },
+          "states_after": {
+            "A": "RUNNING"
+          }
+        },
+        {
+          "round": 1,
+          "queues_before": {
+            "waiting": [
+              "B1"
+            ],
+            "running": [
+              "A"
+            ]
+          },
+          "phase": "prefill",
+          "scheduled_tokens": {
+            "B1": 1
+          },
+          "completion_counts_after": {
+            "A": 1,
+            "B1": 1
+          },
+          "states_after": {
+            "A": "RUNNING",
+            "B1": "FINISHED"
+          }
+        },
+        {
+          "round": 2,
+          "queues_before": {
+            "waiting": [
+              "B2"
+            ],
+            "running": [
+              "A"
+            ]
+          },
+          "phase": "prefill",
+          "scheduled_tokens": {
+            "B2": 1
+          },
+          "completion_counts_after": {
+            "A": 1,
+            "B1": 1,
+            "B2": 1
+          },
+          "states_after": {
+            "A": "RUNNING",
+            "B1": "FINISHED",
+            "B2": "FINISHED"
+          }
+        },
+        {
+          "round": 3,
+          "queues_before": {
+            "waiting": [
+              "B3"
+            ],
+            "running": [
+              "A"
+            ]
+          },
+          "phase": "prefill",
+          "scheduled_tokens": {
+            "B3": 1
+          },
+          "completion_counts_after": {
+            "A": 1,
+            "B1": 1,
+            "B2": 1,
+            "B3": 1
+          },
+          "states_after": {
+            "A": "RUNNING",
+            "B1": "FINISHED",
+            "B2": "FINISHED",
+            "B3": "FINISHED"
+          }
+        },
+        {
+          "round": 4,
+          "queues_before": {
+            "waiting": [
+              "B4"
+            ],
+            "running": [
+              "A"
+            ]
+          },
+          "phase": "prefill",
+          "scheduled_tokens": {
+            "B4": 1
+          },
+          "completion_counts_after": {
+            "A": 1,
+            "B1": 1,
+            "B2": 1,
+            "B3": 1,
+            "B4": 1
+          },
+          "states_after": {
+            "A": "RUNNING",
+            "B1": "FINISHED",
+            "B2": "FINISHED",
+            "B3": "FINISHED",
+            "B4": "FINISHED"
+          }
+        },
+        {
+          "round": 5,
+          "queues_before": {
+            "waiting": [
+              "B5"
+            ],
+            "running": [
+              "A"
+            ]
+          },
+          "phase": "prefill",
+          "scheduled_tokens": {
+            "B5": 1
+          },
+          "completion_counts_after": {
+            "A": 1,
+            "B1": 1,
+            "B2": 1,
+            "B3": 1,
+            "B4": 1,
+            "B5": 1
+          },
+          "states_after": {
+            "A": "RUNNING",
+            "B1": "FINISHED",
+            "B2": "FINISHED",
+            "B3": "FINISHED",
+            "B4": "FINISHED",
+            "B5": "FINISHED"
+          }
+        },
+        {
+          "round": 6,
+          "queues_before": {
+            "waiting": [
+              "B6"
+            ],
+            "running": [
+              "A"
+            ]
+          },
+          "phase": "prefill",
+          "scheduled_tokens": {
+            "B6": 1
+          },
+          "completion_counts_after": {
+            "A": 1,
+            "B1": 1,
+            "B2": 1,
+            "B3": 1,
+            "B4": 1,
+            "B5": 1,
+            "B6": 1
+          },
+          "states_after": {
+            "A": "RUNNING",
+            "B1": "FINISHED",
+            "B2": "FINISHED",
+            "B3": "FINISHED",
+            "B4": "FINISHED",
+            "B5": "FINISHED",
+            "B6": "FINISHED"
+          }
+        },
+        {
+          "round": 7,
+          "queues_before": {
+            "waiting": [],
+            "running": [
+              "A"
+            ]
+          },
+          "phase": "decode",
+          "scheduled_tokens": {
+            "A": 1
+          },
+          "completion_counts_after": {
+            "A": 2,
+            "B1": 1,
+            "B2": 1,
+            "B3": 1,
+            "B4": 1,
+            "B5": 1,
+            "B6": 1
+          },
+          "states_after": {
+            "A": "RUNNING",
+            "B1": "FINISHED",
+            "B2": "FINISHED",
+            "B3": "FINISHED",
+            "B4": "FINISHED",
+            "B5": "FINISHED",
+            "B6": "FINISHED"
+          }
+        },
+        {
+          "round": 8,
+          "queues_before": {
+            "waiting": [],
+            "running": [
+              "A"
+            ]
+          },
+          "phase": "decode",
+          "scheduled_tokens": {
+            "A": 1
+          },
+          "completion_counts_after": {
+            "A": 3,
+            "B1": 1,
+            "B2": 1,
+            "B3": 1,
+            "B4": 1,
+            "B5": 1,
+            "B6": 1
+          },
+          "states_after": {
+            "A": "RUNNING",
+            "B1": "FINISHED",
+            "B2": "FINISHED",
+            "B3": "FINISHED",
+            "B4": "FINISHED",
+            "B5": "FINISHED",
+            "B6": "FINISHED"
+          }
+        },
+        {
+          "round": 9,
+          "queues_before": {
+            "waiting": [],
+            "running": [
+              "A"
+            ]
+          },
+          "phase": "decode",
+          "scheduled_tokens": {
+            "A": 1
+          },
+          "completion_counts_after": {
+            "A": 4,
+            "B1": 1,
+            "B2": 1,
+            "B3": 1,
+            "B4": 1,
+            "B5": 1,
+            "B6": 1
+          },
+          "states_after": {
+            "A": "FINISHED",
+            "B1": "FINISHED",
+            "B2": "FINISHED",
+            "B3": "FINISHED",
+            "B4": "FINISHED",
+            "B5": "FINISHED",
+            "B6": "FINISHED"
+          }
+        }
+      ]
+    },
+    {
+      "policy": "bounded_prefill",
+      "requests": {
+        "A": {
+          "arrival_round": 0,
+          "first_token_round": 0,
+          "first_token_wait_rounds": 0,
+          "finish_round": 8,
+          "arrival_to_finish_rounds": 8,
+          "generation_rounds": [
+            0,
+            3,
+            6,
+            8
+          ],
+          "generation_gaps_rounds": [
+            3,
+            3,
+            2
+          ],
+          "decode_rounds": [
+            3,
+            6,
+            8
+          ],
+          "decode_gaps_rounds": [
+            3,
+            2
+          ]
+        },
+        "B1": {
+          "arrival_round": 1,
+          "first_token_round": 1,
+          "first_token_wait_rounds": 0,
+          "finish_round": 1,
+          "arrival_to_finish_rounds": 0,
+          "generation_rounds": [
+            1
+          ],
+          "generation_gaps_rounds": [],
+          "decode_rounds": [],
+          "decode_gaps_rounds": []
+        },
+        "B2": {
+          "arrival_round": 2,
+          "first_token_round": 2,
+          "first_token_wait_rounds": 0,
+          "finish_round": 2,
+          "arrival_to_finish_rounds": 0,
+          "generation_rounds": [
+            2
+          ],
+          "generation_gaps_rounds": [],
+          "decode_rounds": [],
+          "decode_gaps_rounds": []
+        },
+        "B3": {
+          "arrival_round": 3,
+          "first_token_round": 4,
+          "first_token_wait_rounds": 1,
+          "finish_round": 4,
+          "arrival_to_finish_rounds": 1,
+          "generation_rounds": [
+            4
+          ],
+          "generation_gaps_rounds": [],
+          "decode_rounds": [],
+          "decode_gaps_rounds": []
+        },
+        "B4": {
+          "arrival_round": 4,
+          "first_token_round": 4,
+          "first_token_wait_rounds": 0,
+          "finish_round": 4,
+          "arrival_to_finish_rounds": 0,
+          "generation_rounds": [
+            4
+          ],
+          "generation_gaps_rounds": [],
+          "decode_rounds": [],
+          "decode_gaps_rounds": []
+        },
+        "B5": {
+          "arrival_round": 5,
+          "first_token_round": 5,
+          "first_token_wait_rounds": 0,
+          "finish_round": 5,
+          "arrival_to_finish_rounds": 0,
+          "generation_rounds": [
+            5
+          ],
+          "generation_gaps_rounds": [],
+          "decode_rounds": [],
+          "decode_gaps_rounds": []
+        },
+        "B6": {
+          "arrival_round": 6,
+          "first_token_round": 7,
+          "first_token_wait_rounds": 1,
+          "finish_round": 7,
+          "arrival_to_finish_rounds": 1,
+          "generation_rounds": [
+            7
+          ],
+          "generation_gaps_rounds": [],
+          "decode_rounds": [],
+          "decode_gaps_rounds": []
+        }
+      },
+      "trace": [
+        {
+          "round": 0,
+          "queues_before": {
+            "waiting": [
+              "A"
+            ],
+            "running": []
+          },
+          "phase": "prefill",
+          "scheduled_tokens": {
+            "A": 1
+          },
+          "completion_counts_after": {
+            "A": 1
+          },
+          "states_after": {
+            "A": "RUNNING"
+          }
+        },
+        {
+          "round": 1,
+          "queues_before": {
+            "waiting": [
+              "B1"
+            ],
+            "running": [
+              "A"
+            ]
+          },
+          "phase": "prefill",
+          "scheduled_tokens": {
+            "B1": 1
+          },
+          "completion_counts_after": {
+            "A": 1,
+            "B1": 1
+          },
+          "states_after": {
+            "A": "RUNNING",
+            "B1": "FINISHED"
+          }
+        },
+        {
+          "round": 2,
+          "queues_before": {
+            "waiting": [
+              "B2"
+            ],
+            "running": [
+              "A"
+            ]
+          },
+          "phase": "prefill",
+          "scheduled_tokens": {
+            "B2": 1
+          },
+          "completion_counts_after": {
+            "A": 1,
+            "B1": 1,
+            "B2": 1
+          },
+          "states_after": {
+            "A": "RUNNING",
+            "B1": "FINISHED",
+            "B2": "FINISHED"
+          }
+        },
+        {
+          "round": 3,
+          "queues_before": {
+            "waiting": [
+              "B3"
+            ],
+            "running": [
+              "A"
+            ]
+          },
+          "phase": "decode",
+          "scheduled_tokens": {
+            "A": 1
+          },
+          "completion_counts_after": {
+            "A": 2,
+            "B1": 1,
+            "B2": 1,
+            "B3": 0
+          },
+          "states_after": {
+            "A": "RUNNING",
+            "B1": "FINISHED",
+            "B2": "FINISHED",
+            "B3": "WAITING"
+          }
+        },
+        {
+          "round": 4,
+          "queues_before": {
+            "waiting": [
+              "B3",
+              "B4"
+            ],
+            "running": [
+              "A"
+            ]
+          },
+          "phase": "prefill",
+          "scheduled_tokens": {
+            "B3": 1,
+            "B4": 1
+          },
+          "completion_counts_after": {
+            "A": 2,
+            "B1": 1,
+            "B2": 1,
+            "B3": 1,
+            "B4": 1
+          },
+          "states_after": {
+            "A": "RUNNING",
+            "B1": "FINISHED",
+            "B2": "FINISHED",
+            "B3": "FINISHED",
+            "B4": "FINISHED"
+          }
+        },
+        {
+          "round": 5,
+          "queues_before": {
+            "waiting": [
+              "B5"
+            ],
+            "running": [
+              "A"
+            ]
+          },
+          "phase": "prefill",
+          "scheduled_tokens": {
+            "B5": 1
+          },
+          "completion_counts_after": {
+            "A": 2,
+            "B1": 1,
+            "B2": 1,
+            "B3": 1,
+            "B4": 1,
+            "B5": 1
+          },
+          "states_after": {
+            "A": "RUNNING",
+            "B1": "FINISHED",
+            "B2": "FINISHED",
+            "B3": "FINISHED",
+            "B4": "FINISHED",
+            "B5": "FINISHED"
+          }
+        },
+        {
+          "round": 6,
+          "queues_before": {
+            "waiting": [
+              "B6"
+            ],
+            "running": [
+              "A"
+            ]
+          },
+          "phase": "decode",
+          "scheduled_tokens": {
+            "A": 1
+          },
+          "completion_counts_after": {
+            "A": 3,
+            "B1": 1,
+            "B2": 1,
+            "B3": 1,
+            "B4": 1,
+            "B5": 1,
+            "B6": 0
+          },
+          "states_after": {
+            "A": "RUNNING",
+            "B1": "FINISHED",
+            "B2": "FINISHED",
+            "B3": "FINISHED",
+            "B4": "FINISHED",
+            "B5": "FINISHED",
+            "B6": "WAITING"
+          }
+        },
+        {
+          "round": 7,
+          "queues_before": {
+            "waiting": [
+              "B6"
+            ],
+            "running": [
+              "A"
+            ]
+          },
+          "phase": "prefill",
+          "scheduled_tokens": {
+            "B6": 1
+          },
+          "completion_counts_after": {
+            "A": 3,
+            "B1": 1,
+            "B2": 1,
+            "B3": 1,
+            "B4": 1,
+            "B5": 1,
+            "B6": 1
+          },
+          "states_after": {
+            "A": "RUNNING",
+            "B1": "FINISHED",
+            "B2": "FINISHED",
+            "B3": "FINISHED",
+            "B4": "FINISHED",
+            "B5": "FINISHED",
+            "B6": "FINISHED"
+          }
+        },
+        {
+          "round": 8,
+          "queues_before": {
+            "waiting": [],
+            "running": [
+              "A"
+            ]
+          },
+          "phase": "decode",
+          "scheduled_tokens": {
+            "A": 1
+          },
+          "completion_counts_after": {
+            "A": 4,
+            "B1": 1,
+            "B2": 1,
+            "B3": 1,
+            "B4": 1,
+            "B5": 1,
+            "B6": 1
+          },
+          "states_after": {
+            "A": "FINISHED",
+            "B1": "FINISHED",
+            "B2": "FINISHED",
+            "B3": "FINISHED",
+            "B4": "FINISHED",
+            "B5": "FINISHED",
+            "B6": "FINISHED"
+          }
+        }
+      ]
+    }
+  ]
+}
