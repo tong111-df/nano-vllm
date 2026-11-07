@@ -14,20 +14,27 @@ from nanovllm.engine.sequence import Sequence
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def run_case(policy, arrival_count=6, a_max_tokens=4, *, arrivals_per_round=1):
+def run_case(policy, arrival_count=6, a_max_tokens=4, *, arrivals_per_round=1,
+             decode_policy="original", budget=2, max_consecutive_prefills=2,
+             short_prompt_tokens=1, cache_eviction_policy="original"):
     if arrival_count < 1 or a_max_tokens < 2 or arrivals_per_round < 1:
         raise ValueError('Need at least one arrival and two A output tokens')
+    if type(short_prompt_tokens) is not int or short_prompt_tokens < 1:
+        raise ValueError('short_prompt_tokens must be a positive integer')
     scheduler = Scheduler(SimpleNamespace(
-        max_num_seqs=4, max_num_batched_tokens=2, eos=-1,
+        max_num_seqs=4, max_num_batched_tokens=budget, eos=-1,
         kvcache_block_size=256, num_kvcache_blocks=16,
-        scheduling_policy=policy, max_consecutive_prefills=2,
+        scheduling_policy=policy, max_consecutive_prefills=max_consecutive_prefills,
+        decode_scheduling_policy=decode_policy,
+        cache_eviction_policy=cache_eviction_policy,
     ))
     requests, names, arrivals = {}, {}, {}
     generated, decoded, finished = {}, {}, {}
     trace = []
 
-    def add(name, round_id, max_tokens):
-        seq = Sequence([10 + round_id], SamplingParams(max_tokens=max_tokens))
+    def add(name, round_id, max_tokens, prompt_tokens=1):
+        seq = Sequence([10 + round_id + i for i in range(prompt_tokens)],
+                       SamplingParams(max_tokens=max_tokens))
         requests[name] = seq
         names[seq.seq_id] = name
         arrivals[name] = round_id
@@ -36,13 +43,14 @@ def run_case(policy, arrival_count=6, a_max_tokens=4, *, arrivals_per_round=1):
 
     add('A', 0, a_max_tokens)
     total_arrivals = arrival_count * arrivals_per_round
-    round_limit = total_arrivals + a_max_tokens + 10
+    # Allow fully serialized prompt chunks even at budget=1, plus arrival time.
+    round_limit = total_arrivals * short_prompt_tokens + a_max_tokens + arrival_count + 10
     for round_id in range(round_limit):
         # Arrival schedule is fixed independently of the selected policy.
         if 1 <= round_id <= arrival_count:
             for offset in range(arrivals_per_round):
                 index = (round_id - 1) * arrivals_per_round + offset + 1
-                add(f'B{index}', round_id, 1)
+                add(f'B{index}', round_id, 1, short_prompt_tokens)
         before = {n: s.num_completion_tokens for n, s in requests.items()}
         queues = {
             'waiting': [names[s.seq_id] for s in scheduler.waiting],
@@ -115,6 +123,7 @@ def run_case(policy, arrival_count=6, a_max_tokens=4, *, arrivals_per_round=1):
         'all_finished_round': trace[-1]['round'],
     }
     return {'policy': policy, 'arrival_count': arrival_count,
+            'short_prompt_tokens': short_prompt_tokens,
             'arrivals_per_round': arrivals_per_round, 'total_arrivals': total_arrivals,
             'a_max_tokens': a_max_tokens, 'summary': summary,
             'requests': metrics, 'trace': trace}

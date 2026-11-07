@@ -1,0 +1,4724 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-11-06T00:00:59.143236+00:00",
+  "upstream_base": "bb823b3e06983d71485a8e1f23715ebd87d98ef8",
+  "config": {
+    "schema_version": 1,
+    "workload": "mixed",
+    "parameters": {
+      "leading_tokens": 8,
+      "short_arrival_rounds": 6,
+      "budget": 8
+    },
+    "strategies": [
+      {
+        "decode_policy": "original",
+        "max_consecutive_prefills": 2,
+        "cache_eviction_policy": "original",
+        "policy": "prefill_first"
+      },
+      {
+        "decode_policy": "original",
+        "max_consecutive_prefills": 2,
+        "cache_eviction_policy": "original",
+        "policy": "bounded_prefill"
+      },
+      {
+        "decode_policy": "round_robin",
+        "max_consecutive_prefills": 2,
+        "cache_eviction_policy": "original",
+        "policy": "prefill_first"
+      },
+      {
+        "decode_policy": "round_robin",
+        "max_consecutive_prefills": 2,
+        "cache_eviction_policy": "original",
+        "policy": "bounded_prefill"
+      },
+      {
+        "decode_policy": "original",
+        "max_consecutive_prefills": 2,
+        "cache_eviction_policy": "lru",
+        "policy": "prefill_first"
+      },
+      {
+        "decode_policy": "original",
+        "max_consecutive_prefills": 2,
+        "cache_eviction_policy": "lru",
+        "policy": "bounded_prefill"
+      },
+      {
+        "decode_policy": "round_robin",
+        "max_consecutive_prefills": 2,
+        "cache_eviction_policy": "lru",
+        "policy": "prefill_first"
+      },
+      {
+        "decode_policy": "round_robin",
+        "max_consecutive_prefills": 2,
+        "cache_eviction_policy": "lru",
+        "policy": "bounded_prefill"
+      }
+    ]
+  },
+  "fixed_scheduler": {
+    "max_num_seqs": 2,
+    "num_kvcache_blocks": 16,
+    "kvcache_block_size": 256,
+    "eos": -1
+  },
+  "environment": {
+    "python": "3.12.13",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "packages": {
+      "numpy": "2.2.6",
+      "xxhash": "3.5.0"
+    }
+  },
+  "git": {
+    "head": "8c7c62bee92739ef7bac30aaa7dac9563bf4adf8",
+    "dirty": true
+  },
+  "source_sha256": {
+    "experiments/day2_baseline.py": "f2c0f26cfd9152e059c34f72edf14cca1a465b8aa364914d3c14e1aba54bbdac",
+    "experiments/day3_compare.py": "427df94674a3a742e4676c18a2af9e0cad297f44c418e86a5b2a95e54b6a942c",
+    "experiments/day4_arrivals.py": "3aea3f259f8c98df1209da8dd39f235ccf9fa5f8c53f04893d5c5b040bd9df1f",
+    "experiments/gpu_smoke.py": "4238ed48d25edeaab6670dd15ef858cf14fce0af7996abfd2cac5ecf1835d61b",
+    "experiments/run.py": "0df5f359050bab03e6b66cae2acc12b30c2693a7b244fb64e40581d89d06f1de",
+    "experiments/unit11_cache_lifecycle.py": "3e3e417ee70e9255b5ee5b24aee9b4cf14710b7bedf272c62cda16d4b53c40c6",
+    "experiments/unit12_reclaim_order.py": "285940df9ad8ce03033b44e433d95d5eb32b40234c387f65008e0ad5bfe56e83",
+    "experiments/unit13_lru_compare.py": "7ebf435e3c3908d26544c178f3f7782d155432ddfc3bb0634ddd47a12c5665cf",
+    "experiments/unit14_cache_interactions.py": "8156369a9a8f3c66e0be790e2bf2020975e39d6d2918041e95b81bb5ec73df9e",
+    "experiments/unit15_cache_workloads.py": "614c2ea8c8ceb0140166e0d0d177e9d0e3c6b9ad386b23968ad88980fe80813d",
+    "experiments/unit5_fairness.py": "97ee379e4f5544fd6a7a3b1b7ed0259ceccaf3f43f89f58cdabd00d66c6af610",
+    "experiments/unit8_sweep.py": "e4f8317b14814dfa30b46300ad74a2d18ea53b0aa3ba13c350d60e5a3117bf32",
+    "nanovllm/__init__.py": "18b834b75e18d5c322b825533931c10f8d593eeeb6586a1d79b7181fc7f64547",
+    "nanovllm/config.py": "d855a8d29f77e2e5e59179537a0f9c489ce0b9fa1a554966a9102e0ca14eaeb3",
+    "nanovllm/engine/block_manager.py": "f2cbf992f78a1e2330ad96f604e3bb79cb7e6b9f4ba491d324542daf6fe77761",
+    "nanovllm/engine/cache_policy.py": "8488166b8aaa1be7faa923ff1c11b7a85f685c391c157c67c87e652984c6bafe",
+    "nanovllm/engine/llm_engine.py": "2d6ea211ab6a94f354d9205b26f7ab09986dc6b82a70a189e7ae4486428bc874",
+    "nanovllm/engine/model_runner.py": "8ff1aeb1e5fb907f6e685a48eb3122cbdfdfe44f16825826fc9de34aa533686a",
+    "nanovllm/engine/scheduler.py": "fabf35e39524524421ddbc0272a36716c2af2de53d0ad8ac0c3b4c3b1e010eb5",
+    "nanovllm/engine/sequence.py": "b29f102fb87b3b86aa12079d04f7ef951fd065c75f278f16316914f70cf2b661",
+    "nanovllm/layers/activation.py": "ff12a757110eb2dafecbe447cd912159cdc40bb1fbf1b6739422b3315b190d04",
+    "nanovllm/layers/attention.py": "1f291b29a28aac1d6a21e30be1ada49ffbca04a965057086921e6ad457c2ed1d",
+    "nanovllm/layers/embed_head.py": "bc4cdaafb34f269ac70ebfd841886001508611501914a53cfcd7dab1aba47d97",
+    "nanovllm/layers/layernorm.py": "4ab44acf573c3395beb1078ec99e6effe952c6db7afda7092e4ab0d361bc6088",
+    "nanovllm/layers/linear.py": "cf9c3bfac3103e20637189d931403ff01b3db3df35e8aefd66c169b272a8d24b",
+    "nanovllm/layers/rotary_embedding.py": "22debbc65a74559183d83680a247cb9a7dc4acf386c65e71f38a1208c868015c",
+    "nanovllm/layers/sampler.py": "4bcc321dca3d963430b943f397ce3859dfccd4a684ae8cb452201f744c967e83",
+    "nanovllm/llm.py": "2c5e4ecbef0b0bd9bdee3bc956ec4a3ece1838c0e79393e64b182f229e863d84",
+    "nanovllm/models/qwen3.py": "afa49e591df57d529383fc21f19fdc420468d0271b4a4a6382f3dc5385f44c2c",
+    "nanovllm/sampling_params.py": "8f24b75f8dbbbbaa64c622a8205133f7f886a4ead041b702c92da5fe6a43e8d4",
+    "nanovllm/utils/context.py": "ab719d3035a5c8beaa5aa69e25dcc253098f6e6f8bdefb8d296e2e55ff388426",
+    "nanovllm/utils/loader.py": "8291547bf33fa87941f75cc2e3c9d3156d07f5b5aac23eac12733099348831e0",
+    "requirements-cpu.txt": "709fcd6e643401ed96a708e8567775ea6aa0b76b27c7a92667cd1499f42af6ce"
+  },
+  "units": "Scheduling rounds, synthetic output, no GPU timing; same-round wait=0.",
+  "cases": [
+    {
+      "strategy": {
+        "decode_policy": "original",
+        "max_consecutive_prefills": 2,
+        "cache_eviction_policy": "original",
+        "policy": "prefill_first"
+      },
+      "result": {
+        "policy": "prefill_first",
+        "decode_policy": "original",
+        "leading_tokens": 8,
+        "short_arrival_rounds": 6,
+        "requests": {
+          "A": {
+            "arrival_round": 0,
+            "first_token_round": 0,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": 8,
+            "finish_round": 14,
+            "generation_rounds": [
+              0,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "decode_rounds": [
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "max_generation_gap": 8
+          },
+          "B": {
+            "arrival_round": 0,
+            "first_token_round": 0,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": 8,
+            "finish_round": 14,
+            "generation_rounds": [
+              0,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "decode_rounds": [
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "max_generation_gap": 8
+          },
+          "C": {
+            "arrival_round": 0,
+            "first_token_round": 1,
+            "first_token_wait_rounds": 1,
+            "first_decode_round": 15,
+            "finish_round": 15,
+            "generation_rounds": [
+              1,
+              15
+            ],
+            "decode_rounds": [
+              15
+            ],
+            "max_generation_gap": 14
+          },
+          "D1": {
+            "arrival_round": 2,
+            "first_token_round": 2,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": null,
+            "finish_round": 2,
+            "generation_rounds": [
+              2
+            ],
+            "decode_rounds": [],
+            "max_generation_gap": 0
+          },
+          "D2": {
+            "arrival_round": 3,
+            "first_token_round": 3,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": null,
+            "finish_round": 3,
+            "generation_rounds": [
+              3
+            ],
+            "decode_rounds": [],
+            "max_generation_gap": 0
+          },
+          "D3": {
+            "arrival_round": 4,
+            "first_token_round": 4,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": null,
+            "finish_round": 4,
+            "generation_rounds": [
+              4
+            ],
+            "decode_rounds": [],
+            "max_generation_gap": 0
+          },
+          "D4": {
+            "arrival_round": 5,
+            "first_token_round": 5,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": null,
+            "finish_round": 5,
+            "generation_rounds": [
+              5
+            ],
+            "decode_rounds": [],
+            "max_generation_gap": 0
+          },
+          "D5": {
+            "arrival_round": 6,
+            "first_token_round": 6,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": null,
+            "finish_round": 6,
+            "generation_rounds": [
+              6
+            ],
+            "decode_rounds": [],
+            "max_generation_gap": 0
+          },
+          "D6": {
+            "arrival_round": 7,
+            "first_token_round": 7,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": null,
+            "finish_round": 7,
+            "generation_rounds": [
+              7
+            ],
+            "decode_rounds": [],
+            "max_generation_gap": 0
+          }
+        },
+        "trace": [
+          {
+            "round": 0,
+            "phase": "prefill",
+            "running_before": [],
+            "waiting_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "selected": [
+              "A",
+              "B"
+            ],
+            "running_after": [
+              "A",
+              "B"
+            ],
+            "completion_counts_after": {
+              "A": 1,
+              "B": 1,
+              "C": 0
+            }
+          },
+          {
+            "round": 1,
+            "phase": "prefill",
+            "running_before": [
+              "A",
+              "B"
+            ],
+            "waiting_before": [
+              "C"
+            ],
+            "selected": [
+              "C"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 1,
+              "B": 1,
+              "C": 1
+            }
+          },
+          {
+            "round": 2,
+            "phase": "prefill",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [
+              "D1"
+            ],
+            "selected": [
+              "D1"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 1,
+              "B": 1,
+              "C": 1,
+              "D1": 1
+            }
+          },
+          {
+            "round": 3,
+            "phase": "prefill",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [
+              "D2"
+            ],
+            "selected": [
+              "D2"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 1,
+              "B": 1,
+              "C": 1,
+              "D1": 1,
+              "D2": 1
+            }
+          },
+          {
+            "round": 4,
+            "phase": "prefill",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [
+              "D3"
+            ],
+            "selected": [
+              "D3"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 1,
+              "B": 1,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1
+            }
+          },
+          {
+            "round": 5,
+            "phase": "prefill",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [
+              "D4"
+            ],
+            "selected": [
+              "D4"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 1,
+              "B": 1,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1
+            }
+          },
+          {
+            "round": 6,
+            "phase": "prefill",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [
+              "D5"
+            ],
+            "selected": [
+              "D5"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 1,
+              "B": 1,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1
+            }
+          },
+          {
+            "round": 7,
+            "phase": "prefill",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [
+              "D6"
+            ],
+            "selected": [
+              "D6"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 1,
+              "B": 1,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 8,
+            "phase": "decode",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "A",
+              "B"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 2,
+              "B": 2,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 9,
+            "phase": "decode",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "A",
+              "B"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 3,
+              "B": 3,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 10,
+            "phase": "decode",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "A",
+              "B"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 4,
+              "B": 4,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 11,
+            "phase": "decode",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "A",
+              "B"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 5,
+              "B": 5,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 12,
+            "phase": "decode",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "A",
+              "B"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 6,
+              "B": 6,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 13,
+            "phase": "decode",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "A",
+              "B"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 7,
+              "B": 7,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 14,
+            "phase": "decode",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "A",
+              "B"
+            ],
+            "running_after": [
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 8,
+              "B": 8,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 15,
+            "phase": "decode",
+            "running_before": [
+              "C"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "C"
+            ],
+            "running_after": [],
+            "completion_counts_after": {
+              "A": 8,
+              "B": 8,
+              "C": 2,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "strategy": {
+        "decode_policy": "original",
+        "max_consecutive_prefills": 2,
+        "cache_eviction_policy": "original",
+        "policy": "bounded_prefill"
+      },
+      "result": {
+        "policy": "bounded_prefill",
+        "decode_policy": "original",
+        "leading_tokens": 8,
+        "short_arrival_rounds": 6,
+        "requests": {
+          "A": {
+            "arrival_round": 0,
+            "first_token_round": 0,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": 3,
+            "finish_round": 12,
+            "generation_rounds": [
+              0,
+              3,
+              6,
+              8,
+              9,
+              10,
+              11,
+              12
+            ],
+            "decode_rounds": [
+              3,
+              6,
+              8,
+              9,
+              10,
+              11,
+              12
+            ],
+            "max_generation_gap": 3
+          },
+          "B": {
+            "arrival_round": 0,
+            "first_token_round": 0,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": 3,
+            "finish_round": 12,
+            "generation_rounds": [
+              0,
+              3,
+              6,
+              8,
+              9,
+              10,
+              11,
+              12
+            ],
+            "decode_rounds": [
+              3,
+              6,
+              8,
+              9,
+              10,
+              11,
+              12
+            ],
+            "max_generation_gap": 3
+          },
+          "C": {
+            "arrival_round": 0,
+            "first_token_round": 1,
+            "first_token_wait_rounds": 1,
+            "first_decode_round": 13,
+            "finish_round": 13,
+            "generation_rounds": [
+              1,
+              13
+            ],
+            "decode_rounds": [
+              13
+            ],
+            "max_generation_gap": 12
+          },
+          "D1": {
+            "arrival_round": 2,
+            "first_token_round": 2,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": null,
+            "finish_round": 2,
+            "generation_rounds": [
+              2
+            ],
+            "decode_rounds": [],
+            "max_generation_gap": 0
+          },
+          "D2": {
+            "arrival_round": 3,
+            "first_token_round": 4,
+            "first_token_wait_rounds": 1,
+            "first_decode_round": null,
+            "finish_round": 4,
+            "generation_rounds": [
+              4
+            ],
+            "decode_rounds": [],
+            "max_generation_gap": 0
+          },
+          "D3": {
+            "arrival_round": 4,
+            "first_token_round": 4,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": null,
+            "finish_round": 4,
+            "generation_rounds": [
+              4
+            ],
+            "decode_rounds": [],
+            "max_generation_gap": 0
+          },
+          "D4": {
+            "arrival_round": 5,
+            "first_token_round": 5,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": null,
+            "finish_round": 5,
+            "generation_rounds": [
+              5
+            ],
+            "decode_rounds": [],
+            "max_generation_gap": 0
+          },
+          "D5": {
+            "arrival_round": 6,
+            "first_token_round": 7,
+            "first_token_wait_rounds": 1,
+            "first_decode_round": null,
+            "finish_round": 7,
+            "generation_rounds": [
+              7
+            ],
+            "decode_rounds": [],
+            "max_generation_gap": 0
+          },
+          "D6": {
+            "arrival_round": 7,
+            "first_token_round": 7,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": null,
+            "finish_round": 7,
+            "generation_rounds": [
+              7
+            ],
+            "decode_rounds": [],
+            "max_generation_gap": 0
+          }
+        },
+        "trace": [
+          {
+            "round": 0,
+            "phase": "prefill",
+            "running_before": [],
+            "waiting_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "selected": [
+              "A",
+              "B"
+            ],
+            "running_after": [
+              "A",
+              "B"
+            ],
+            "completion_counts_after": {
+              "A": 1,
+              "B": 1,
+              "C": 0
+            }
+          },
+          {
+            "round": 1,
+            "phase": "prefill",
+            "running_before": [
+              "A",
+              "B"
+            ],
+            "waiting_before": [
+              "C"
+            ],
+            "selected": [
+              "C"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 1,
+              "B": 1,
+              "C": 1
+            }
+          },
+          {
+            "round": 2,
+            "phase": "prefill",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [
+              "D1"
+            ],
+            "selected": [
+              "D1"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 1,
+              "B": 1,
+              "C": 1,
+              "D1": 1
+            }
+          },
+          {
+            "round": 3,
+            "phase": "decode",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [
+              "D2"
+            ],
+            "selected": [
+              "A",
+              "B"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 2,
+              "B": 2,
+              "C": 1,
+              "D1": 1,
+              "D2": 0
+            }
+          },
+          {
+            "round": 4,
+            "phase": "prefill",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [
+              "D2",
+              "D3"
+            ],
+            "selected": [
+              "D2",
+              "D3"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 2,
+              "B": 2,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1
+            }
+          },
+          {
+            "round": 5,
+            "phase": "prefill",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [
+              "D4"
+            ],
+            "selected": [
+              "D4"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 2,
+              "B": 2,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1
+            }
+          },
+          {
+            "round": 6,
+            "phase": "decode",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [
+              "D5"
+            ],
+            "selected": [
+              "A",
+              "B"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 3,
+              "B": 3,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 0
+            }
+          },
+          {
+            "round": 7,
+            "phase": "prefill",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [
+              "D5",
+              "D6"
+            ],
+            "selected": [
+              "D5",
+              "D6"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 3,
+              "B": 3,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 8,
+            "phase": "decode",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "A",
+              "B"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 4,
+              "B": 4,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 9,
+            "phase": "decode",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "A",
+              "B"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 5,
+              "B": 5,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 10,
+            "phase": "decode",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "A",
+              "B"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 6,
+              "B": 6,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 11,
+            "phase": "decode",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "A",
+              "B"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 7,
+              "B": 7,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 12,
+            "phase": "decode",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "A",
+              "B"
+            ],
+            "running_after": [
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 8,
+              "B": 8,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 13,
+            "phase": "decode",
+            "running_before": [
+              "C"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "C"
+            ],
+            "running_after": [],
+            "completion_counts_after": {
+              "A": 8,
+              "B": 8,
+              "C": 2,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "strategy": {
+        "decode_policy": "round_robin",
+        "max_consecutive_prefills": 2,
+        "cache_eviction_policy": "original",
+        "policy": "prefill_first"
+      },
+      "result": {
+        "policy": "prefill_first",
+        "decode_policy": "round_robin",
+        "leading_tokens": 8,
+        "short_arrival_rounds": 6,
+        "requests": {
+          "A": {
+            "arrival_round": 0,
+            "first_token_round": 0,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": 8,
+            "finish_round": 14,
+            "generation_rounds": [
+              0,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "decode_rounds": [
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "max_generation_gap": 8
+          },
+          "B": {
+            "arrival_round": 0,
+            "first_token_round": 0,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": 8,
+            "finish_round": 15,
+            "generation_rounds": [
+              0,
+              8,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "decode_rounds": [
+              8,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "max_generation_gap": 8
+          },
+          "C": {
+            "arrival_round": 0,
+            "first_token_round": 1,
+            "first_token_wait_rounds": 1,
+            "first_decode_round": 9,
+            "finish_round": 9,
+            "generation_rounds": [
+              1,
+              9
+            ],
+            "decode_rounds": [
+              9
+            ],
+            "max_generation_gap": 8
+          },
+          "D1": {
+            "arrival_round": 2,
+            "first_token_round": 2,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": null,
+            "finish_round": 2,
+            "generation_rounds": [
+              2
+            ],
+            "decode_rounds": [],
+            "max_generation_gap": 0
+          },
+          "D2": {
+            "arrival_round": 3,
+            "first_token_round": 3,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": null,
+            "finish_round": 3,
+            "generation_rounds": [
+              3
+            ],
+            "decode_rounds": [],
+            "max_generation_gap": 0
+          },
+          "D3": {
+            "arrival_round": 4,
+            "first_token_round": 4,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": null,
+            "finish_round": 4,
+            "generation_rounds": [
+              4
+            ],
+            "decode_rounds": [],
+            "max_generation_gap": 0
+          },
+          "D4": {
+            "arrival_round": 5,
+            "first_token_round": 5,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": null,
+            "finish_round": 5,
+            "generation_rounds": [
+              5
+            ],
+            "decode_rounds": [],
+            "max_generation_gap": 0
+          },
+          "D5": {
+            "arrival_round": 6,
+            "first_token_round": 6,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": null,
+            "finish_round": 6,
+            "generation_rounds": [
+              6
+            ],
+            "decode_rounds": [],
+            "max_generation_gap": 0
+          },
+          "D6": {
+            "arrival_round": 7,
+            "first_token_round": 7,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": null,
+            "finish_round": 7,
+            "generation_rounds": [
+              7
+            ],
+            "decode_rounds": [],
+            "max_generation_gap": 0
+          }
+        },
+        "trace": [
+          {
+            "round": 0,
+            "phase": "prefill",
+            "running_before": [],
+            "waiting_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "selected": [
+              "A",
+              "B"
+            ],
+            "running_after": [
+              "A",
+              "B"
+            ],
+            "completion_counts_after": {
+              "A": 1,
+              "B": 1,
+              "C": 0
+            }
+          },
+          {
+            "round": 1,
+            "phase": "prefill",
+            "running_before": [
+              "A",
+              "B"
+            ],
+            "waiting_before": [
+              "C"
+            ],
+            "selected": [
+              "C"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 1,
+              "B": 1,
+              "C": 1
+            }
+          },
+          {
+            "round": 2,
+            "phase": "prefill",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [
+              "D1"
+            ],
+            "selected": [
+              "D1"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 1,
+              "B": 1,
+              "C": 1,
+              "D1": 1
+            }
+          },
+          {
+            "round": 3,
+            "phase": "prefill",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [
+              "D2"
+            ],
+            "selected": [
+              "D2"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 1,
+              "B": 1,
+              "C": 1,
+              "D1": 1,
+              "D2": 1
+            }
+          },
+          {
+            "round": 4,
+            "phase": "prefill",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [
+              "D3"
+            ],
+            "selected": [
+              "D3"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 1,
+              "B": 1,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1
+            }
+          },
+          {
+            "round": 5,
+            "phase": "prefill",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [
+              "D4"
+            ],
+            "selected": [
+              "D4"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 1,
+              "B": 1,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1
+            }
+          },
+          {
+            "round": 6,
+            "phase": "prefill",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [
+              "D5"
+            ],
+            "selected": [
+              "D5"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 1,
+              "B": 1,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1
+            }
+          },
+          {
+            "round": 7,
+            "phase": "prefill",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [
+              "D6"
+            ],
+            "selected": [
+              "D6"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 1,
+              "B": 1,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 8,
+            "phase": "decode",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "A",
+              "B"
+            ],
+            "running_after": [
+              "C",
+              "A",
+              "B"
+            ],
+            "completion_counts_after": {
+              "A": 2,
+              "B": 2,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 9,
+            "phase": "decode",
+            "running_before": [
+              "C",
+              "A",
+              "B"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "C",
+              "A"
+            ],
+            "running_after": [
+              "B",
+              "A"
+            ],
+            "completion_counts_after": {
+              "A": 3,
+              "B": 2,
+              "C": 2,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 10,
+            "phase": "decode",
+            "running_before": [
+              "B",
+              "A"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "B",
+              "A"
+            ],
+            "running_after": [
+              "B",
+              "A"
+            ],
+            "completion_counts_after": {
+              "A": 4,
+              "B": 3,
+              "C": 2,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 11,
+            "phase": "decode",
+            "running_before": [
+              "B",
+              "A"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "B",
+              "A"
+            ],
+            "running_after": [
+              "B",
+              "A"
+            ],
+            "completion_counts_after": {
+              "A": 5,
+              "B": 4,
+              "C": 2,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 12,
+            "phase": "decode",
+            "running_before": [
+              "B",
+              "A"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "B",
+              "A"
+            ],
+            "running_after": [
+              "B",
+              "A"
+            ],
+            "completion_counts_after": {
+              "A": 6,
+              "B": 5,
+              "C": 2,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 13,
+            "phase": "decode",
+            "running_before": [
+              "B",
+              "A"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "B",
+              "A"
+            ],
+            "running_after": [
+              "B",
+              "A"
+            ],
+            "completion_counts_after": {
+              "A": 7,
+              "B": 6,
+              "C": 2,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 14,
+            "phase": "decode",
+            "running_before": [
+              "B",
+              "A"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "B",
+              "A"
+            ],
+            "running_after": [
+              "B"
+            ],
+            "completion_counts_after": {
+              "A": 8,
+              "B": 7,
+              "C": 2,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 15,
+            "phase": "decode",
+            "running_before": [
+              "B"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "B"
+            ],
+            "running_after": [],
+            "completion_counts_after": {
+              "A": 8,
+              "B": 8,
+              "C": 2,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "strategy": {
+        "decode_policy": "round_robin",
+        "max_consecutive_prefills": 2,
+        "cache_eviction_policy": "original",
+        "policy": "bounded_prefill"
+      },
+      "result": {
+        "policy": "bounded_prefill",
+        "decode_policy": "round_robin",
+        "leading_tokens": 8,
+        "short_arrival_rounds": 6,
+        "requests": {
+          "A": {
+            "arrival_round": 0,
+            "first_token_round": 0,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": 3,
+            "finish_round": 12,
+            "generation_rounds": [
+              0,
+              3,
+              6,
+              8,
+              9,
+              10,
+              11,
+              12
+            ],
+            "decode_rounds": [
+              3,
+              6,
+              8,
+              9,
+              10,
+              11,
+              12
+            ],
+            "max_generation_gap": 3
+          },
+          "B": {
+            "arrival_round": 0,
+            "first_token_round": 0,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": 3,
+            "finish_round": 13,
+            "generation_rounds": [
+              0,
+              3,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13
+            ],
+            "decode_rounds": [
+              3,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13
+            ],
+            "max_generation_gap": 5
+          },
+          "C": {
+            "arrival_round": 0,
+            "first_token_round": 1,
+            "first_token_wait_rounds": 1,
+            "first_decode_round": 6,
+            "finish_round": 6,
+            "generation_rounds": [
+              1,
+              6
+            ],
+            "decode_rounds": [
+              6
+            ],
+            "max_generation_gap": 5
+          },
+          "D1": {
+            "arrival_round": 2,
+            "first_token_round": 2,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": null,
+            "finish_round": 2,
+            "generation_rounds": [
+              2
+            ],
+            "decode_rounds": [],
+            "max_generation_gap": 0
+          },
+          "D2": {
+            "arrival_round": 3,
+            "first_token_round": 4,
+            "first_token_wait_rounds": 1,
+            "first_decode_round": null,
+            "finish_round": 4,
+            "generation_rounds": [
+              4
+            ],
+            "decode_rounds": [],
+            "max_generation_gap": 0
+          },
+          "D3": {
+            "arrival_round": 4,
+            "first_token_round": 4,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": null,
+            "finish_round": 4,
+            "generation_rounds": [
+              4
+            ],
+            "decode_rounds": [],
+            "max_generation_gap": 0
+          },
+          "D4": {
+            "arrival_round": 5,
+            "first_token_round": 5,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": null,
+            "finish_round": 5,
+            "generation_rounds": [
+              5
+            ],
+            "decode_rounds": [],
+            "max_generation_gap": 0
+          },
+          "D5": {
+            "arrival_round": 6,
+            "first_token_round": 7,
+            "first_token_wait_rounds": 1,
+            "first_decode_round": null,
+            "finish_round": 7,
+            "generation_rounds": [
+              7
+            ],
+            "decode_rounds": [],
+            "max_generation_gap": 0
+          },
+          "D6": {
+            "arrival_round": 7,
+            "first_token_round": 7,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": null,
+            "finish_round": 7,
+            "generation_rounds": [
+              7
+            ],
+            "decode_rounds": [],
+            "max_generation_gap": 0
+          }
+        },
+        "trace": [
+          {
+            "round": 0,
+            "phase": "prefill",
+            "running_before": [],
+            "waiting_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "selected": [
+              "A",
+              "B"
+            ],
+            "running_after": [
+              "A",
+              "B"
+            ],
+            "completion_counts_after": {
+              "A": 1,
+              "B": 1,
+              "C": 0
+            }
+          },
+          {
+            "round": 1,
+            "phase": "prefill",
+            "running_before": [
+              "A",
+              "B"
+            ],
+            "waiting_before": [
+              "C"
+            ],
+            "selected": [
+              "C"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 1,
+              "B": 1,
+              "C": 1
+            }
+          },
+          {
+            "round": 2,
+            "phase": "prefill",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [
+              "D1"
+            ],
+            "selected": [
+              "D1"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 1,
+              "B": 1,
+              "C": 1,
+              "D1": 1
+            }
+          },
+          {
+            "round": 3,
+            "phase": "decode",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [
+              "D2"
+            ],
+            "selected": [
+              "A",
+              "B"
+            ],
+            "running_after": [
+              "C",
+              "A",
+              "B"
+            ],
+            "completion_counts_after": {
+              "A": 2,
+              "B": 2,
+              "C": 1,
+              "D1": 1,
+              "D2": 0
+            }
+          },
+          {
+            "round": 4,
+            "phase": "prefill",
+            "running_before": [
+              "C",
+              "A",
+              "B"
+            ],
+            "waiting_before": [
+              "D2",
+              "D3"
+            ],
+            "selected": [
+              "D2",
+              "D3"
+            ],
+            "running_after": [
+              "C",
+              "A",
+              "B"
+            ],
+            "completion_counts_after": {
+              "A": 2,
+              "B": 2,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1
+            }
+          },
+          {
+            "round": 5,
+            "phase": "prefill",
+            "running_before": [
+              "C",
+              "A",
+              "B"
+            ],
+            "waiting_before": [
+              "D4"
+            ],
+            "selected": [
+              "D4"
+            ],
+            "running_after": [
+              "C",
+              "A",
+              "B"
+            ],
+            "completion_counts_after": {
+              "A": 2,
+              "B": 2,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1
+            }
+          },
+          {
+            "round": 6,
+            "phase": "decode",
+            "running_before": [
+              "C",
+              "A",
+              "B"
+            ],
+            "waiting_before": [
+              "D5"
+            ],
+            "selected": [
+              "C",
+              "A"
+            ],
+            "running_after": [
+              "B",
+              "A"
+            ],
+            "completion_counts_after": {
+              "A": 3,
+              "B": 2,
+              "C": 2,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 0
+            }
+          },
+          {
+            "round": 7,
+            "phase": "prefill",
+            "running_before": [
+              "B",
+              "A"
+            ],
+            "waiting_before": [
+              "D5",
+              "D6"
+            ],
+            "selected": [
+              "D5",
+              "D6"
+            ],
+            "running_after": [
+              "B",
+              "A"
+            ],
+            "completion_counts_after": {
+              "A": 3,
+              "B": 2,
+              "C": 2,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 8,
+            "phase": "decode",
+            "running_before": [
+              "B",
+              "A"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "B",
+              "A"
+            ],
+            "running_after": [
+              "B",
+              "A"
+            ],
+            "completion_counts_after": {
+              "A": 4,
+              "B": 3,
+              "C": 2,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 9,
+            "phase": "decode",
+            "running_before": [
+              "B",
+              "A"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "B",
+              "A"
+            ],
+            "running_after": [
+              "B",
+              "A"
+            ],
+            "completion_counts_after": {
+              "A": 5,
+              "B": 4,
+              "C": 2,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 10,
+            "phase": "decode",
+            "running_before": [
+              "B",
+              "A"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "B",
+              "A"
+            ],
+            "running_after": [
+              "B",
+              "A"
+            ],
+            "completion_counts_after": {
+              "A": 6,
+              "B": 5,
+              "C": 2,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 11,
+            "phase": "decode",
+            "running_before": [
+              "B",
+              "A"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "B",
+              "A"
+            ],
+            "running_after": [
+              "B",
+              "A"
+            ],
+            "completion_counts_after": {
+              "A": 7,
+              "B": 6,
+              "C": 2,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 12,
+            "phase": "decode",
+            "running_before": [
+              "B",
+              "A"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "B",
+              "A"
+            ],
+            "running_after": [
+              "B"
+            ],
+            "completion_counts_after": {
+              "A": 8,
+              "B": 7,
+              "C": 2,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 13,
+            "phase": "decode",
+            "running_before": [
+              "B"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "B"
+            ],
+            "running_after": [],
+            "completion_counts_after": {
+              "A": 8,
+              "B": 8,
+              "C": 2,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "strategy": {
+        "decode_policy": "original",
+        "max_consecutive_prefills": 2,
+        "cache_eviction_policy": "lru",
+        "policy": "prefill_first"
+      },
+      "result": {
+        "policy": "prefill_first",
+        "decode_policy": "original",
+        "leading_tokens": 8,
+        "short_arrival_rounds": 6,
+        "requests": {
+          "A": {
+            "arrival_round": 0,
+            "first_token_round": 0,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": 8,
+            "finish_round": 14,
+            "generation_rounds": [
+              0,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "decode_rounds": [
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "max_generation_gap": 8
+          },
+          "B": {
+            "arrival_round": 0,
+            "first_token_round": 0,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": 8,
+            "finish_round": 14,
+            "generation_rounds": [
+              0,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "decode_rounds": [
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "max_generation_gap": 8
+          },
+          "C": {
+            "arrival_round": 0,
+            "first_token_round": 1,
+            "first_token_wait_rounds": 1,
+            "first_decode_round": 15,
+            "finish_round": 15,
+            "generation_rounds": [
+              1,
+              15
+            ],
+            "decode_rounds": [
+              15
+            ],
+            "max_generation_gap": 14
+          },
+          "D1": {
+            "arrival_round": 2,
+            "first_token_round": 2,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": null,
+            "finish_round": 2,
+            "generation_rounds": [
+              2
+            ],
+            "decode_rounds": [],
+            "max_generation_gap": 0
+          },
+          "D2": {
+            "arrival_round": 3,
+            "first_token_round": 3,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": null,
+            "finish_round": 3,
+            "generation_rounds": [
+              3
+            ],
+            "decode_rounds": [],
+            "max_generation_gap": 0
+          },
+          "D3": {
+            "arrival_round": 4,
+            "first_token_round": 4,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": null,
+            "finish_round": 4,
+            "generation_rounds": [
+              4
+            ],
+            "decode_rounds": [],
+            "max_generation_gap": 0
+          },
+          "D4": {
+            "arrival_round": 5,
+            "first_token_round": 5,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": null,
+            "finish_round": 5,
+            "generation_rounds": [
+              5
+            ],
+            "decode_rounds": [],
+            "max_generation_gap": 0
+          },
+          "D5": {
+            "arrival_round": 6,
+            "first_token_round": 6,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": null,
+            "finish_round": 6,
+            "generation_rounds": [
+              6
+            ],
+            "decode_rounds": [],
+            "max_generation_gap": 0
+          },
+          "D6": {
+            "arrival_round": 7,
+            "first_token_round": 7,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": null,
+            "finish_round": 7,
+            "generation_rounds": [
+              7
+            ],
+            "decode_rounds": [],
+            "max_generation_gap": 0
+          }
+        },
+        "trace": [
+          {
+            "round": 0,
+            "phase": "prefill",
+            "running_before": [],
+            "waiting_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "selected": [
+              "A",
+              "B"
+            ],
+            "running_after": [
+              "A",
+              "B"
+            ],
+            "completion_counts_after": {
+              "A": 1,
+              "B": 1,
+              "C": 0
+            }
+          },
+          {
+            "round": 1,
+            "phase": "prefill",
+            "running_before": [
+              "A",
+              "B"
+            ],
+            "waiting_before": [
+              "C"
+            ],
+            "selected": [
+              "C"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 1,
+              "B": 1,
+              "C": 1
+            }
+          },
+          {
+            "round": 2,
+            "phase": "prefill",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [
+              "D1"
+            ],
+            "selected": [
+              "D1"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 1,
+              "B": 1,
+              "C": 1,
+              "D1": 1
+            }
+          },
+          {
+            "round": 3,
+            "phase": "prefill",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [
+              "D2"
+            ],
+            "selected": [
+              "D2"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 1,
+              "B": 1,
+              "C": 1,
+              "D1": 1,
+              "D2": 1
+            }
+          },
+          {
+            "round": 4,
+            "phase": "prefill",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [
+              "D3"
+            ],
+            "selected": [
+              "D3"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 1,
+              "B": 1,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1
+            }
+          },
+          {
+            "round": 5,
+            "phase": "prefill",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [
+              "D4"
+            ],
+            "selected": [
+              "D4"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 1,
+              "B": 1,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1
+            }
+          },
+          {
+            "round": 6,
+            "phase": "prefill",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [
+              "D5"
+            ],
+            "selected": [
+              "D5"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 1,
+              "B": 1,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1
+            }
+          },
+          {
+            "round": 7,
+            "phase": "prefill",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [
+              "D6"
+            ],
+            "selected": [
+              "D6"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 1,
+              "B": 1,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 8,
+            "phase": "decode",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "A",
+              "B"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 2,
+              "B": 2,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 9,
+            "phase": "decode",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "A",
+              "B"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 3,
+              "B": 3,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 10,
+            "phase": "decode",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "A",
+              "B"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 4,
+              "B": 4,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 11,
+            "phase": "decode",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "A",
+              "B"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 5,
+              "B": 5,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 12,
+            "phase": "decode",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "A",
+              "B"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 6,
+              "B": 6,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 13,
+            "phase": "decode",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "A",
+              "B"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 7,
+              "B": 7,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 14,
+            "phase": "decode",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "A",
+              "B"
+            ],
+            "running_after": [
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 8,
+              "B": 8,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 15,
+            "phase": "decode",
+            "running_before": [
+              "C"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "C"
+            ],
+            "running_after": [],
+            "completion_counts_after": {
+              "A": 8,
+              "B": 8,
+              "C": 2,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "strategy": {
+        "decode_policy": "original",
+        "max_consecutive_prefills": 2,
+        "cache_eviction_policy": "lru",
+        "policy": "bounded_prefill"
+      },
+      "result": {
+        "policy": "bounded_prefill",
+        "decode_policy": "original",
+        "leading_tokens": 8,
+        "short_arrival_rounds": 6,
+        "requests": {
+          "A": {
+            "arrival_round": 0,
+            "first_token_round": 0,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": 3,
+            "finish_round": 12,
+            "generation_rounds": [
+              0,
+              3,
+              6,
+              8,
+              9,
+              10,
+              11,
+              12
+            ],
+            "decode_rounds": [
+              3,
+              6,
+              8,
+              9,
+              10,
+              11,
+              12
+            ],
+            "max_generation_gap": 3
+          },
+          "B": {
+            "arrival_round": 0,
+            "first_token_round": 0,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": 3,
+            "finish_round": 12,
+            "generation_rounds": [
+              0,
+              3,
+              6,
+              8,
+              9,
+              10,
+              11,
+              12
+            ],
+            "decode_rounds": [
+              3,
+              6,
+              8,
+              9,
+              10,
+              11,
+              12
+            ],
+            "max_generation_gap": 3
+          },
+          "C": {
+            "arrival_round": 0,
+            "first_token_round": 1,
+            "first_token_wait_rounds": 1,
+            "first_decode_round": 13,
+            "finish_round": 13,
+            "generation_rounds": [
+              1,
+              13
+            ],
+            "decode_rounds": [
+              13
+            ],
+            "max_generation_gap": 12
+          },
+          "D1": {
+            "arrival_round": 2,
+            "first_token_round": 2,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": null,
+            "finish_round": 2,
+            "generation_rounds": [
+              2
+            ],
+            "decode_rounds": [],
+            "max_generation_gap": 0
+          },
+          "D2": {
+            "arrival_round": 3,
+            "first_token_round": 4,
+            "first_token_wait_rounds": 1,
+            "first_decode_round": null,
+            "finish_round": 4,
+            "generation_rounds": [
+              4
+            ],
+            "decode_rounds": [],
+            "max_generation_gap": 0
+          },
+          "D3": {
+            "arrival_round": 4,
+            "first_token_round": 4,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": null,
+            "finish_round": 4,
+            "generation_rounds": [
+              4
+            ],
+            "decode_rounds": [],
+            "max_generation_gap": 0
+          },
+          "D4": {
+            "arrival_round": 5,
+            "first_token_round": 5,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": null,
+            "finish_round": 5,
+            "generation_rounds": [
+              5
+            ],
+            "decode_rounds": [],
+            "max_generation_gap": 0
+          },
+          "D5": {
+            "arrival_round": 6,
+            "first_token_round": 7,
+            "first_token_wait_rounds": 1,
+            "first_decode_round": null,
+            "finish_round": 7,
+            "generation_rounds": [
+              7
+            ],
+            "decode_rounds": [],
+            "max_generation_gap": 0
+          },
+          "D6": {
+            "arrival_round": 7,
+            "first_token_round": 7,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": null,
+            "finish_round": 7,
+            "generation_rounds": [
+              7
+            ],
+            "decode_rounds": [],
+            "max_generation_gap": 0
+          }
+        },
+        "trace": [
+          {
+            "round": 0,
+            "phase": "prefill",
+            "running_before": [],
+            "waiting_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "selected": [
+              "A",
+              "B"
+            ],
+            "running_after": [
+              "A",
+              "B"
+            ],
+            "completion_counts_after": {
+              "A": 1,
+              "B": 1,
+              "C": 0
+            }
+          },
+          {
+            "round": 1,
+            "phase": "prefill",
+            "running_before": [
+              "A",
+              "B"
+            ],
+            "waiting_before": [
+              "C"
+            ],
+            "selected": [
+              "C"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 1,
+              "B": 1,
+              "C": 1
+            }
+          },
+          {
+            "round": 2,
+            "phase": "prefill",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [
+              "D1"
+            ],
+            "selected": [
+              "D1"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 1,
+              "B": 1,
+              "C": 1,
+              "D1": 1
+            }
+          },
+          {
+            "round": 3,
+            "phase": "decode",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [
+              "D2"
+            ],
+            "selected": [
+              "A",
+              "B"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 2,
+              "B": 2,
+              "C": 1,
+              "D1": 1,
+              "D2": 0
+            }
+          },
+          {
+            "round": 4,
+            "phase": "prefill",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [
+              "D2",
+              "D3"
+            ],
+            "selected": [
+              "D2",
+              "D3"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 2,
+              "B": 2,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1
+            }
+          },
+          {
+            "round": 5,
+            "phase": "prefill",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [
+              "D4"
+            ],
+            "selected": [
+              "D4"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 2,
+              "B": 2,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1
+            }
+          },
+          {
+            "round": 6,
+            "phase": "decode",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [
+              "D5"
+            ],
+            "selected": [
+              "A",
+              "B"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 3,
+              "B": 3,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 0
+            }
+          },
+          {
+            "round": 7,
+            "phase": "prefill",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [
+              "D5",
+              "D6"
+            ],
+            "selected": [
+              "D5",
+              "D6"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 3,
+              "B": 3,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 8,
+            "phase": "decode",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "A",
+              "B"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 4,
+              "B": 4,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 9,
+            "phase": "decode",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "A",
+              "B"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 5,
+              "B": 5,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 10,
+            "phase": "decode",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "A",
+              "B"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 6,
+              "B": 6,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 11,
+            "phase": "decode",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "A",
+              "B"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 7,
+              "B": 7,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 12,
+            "phase": "decode",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "A",
+              "B"
+            ],
+            "running_after": [
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 8,
+              "B": 8,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 13,
+            "phase": "decode",
+            "running_before": [
+              "C"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "C"
+            ],
+            "running_after": [],
+            "completion_counts_after": {
+              "A": 8,
+              "B": 8,
+              "C": 2,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "strategy": {
+        "decode_policy": "round_robin",
+        "max_consecutive_prefills": 2,
+        "cache_eviction_policy": "lru",
+        "policy": "prefill_first"
+      },
+      "result": {
+        "policy": "prefill_first",
+        "decode_policy": "round_robin",
+        "leading_tokens": 8,
+        "short_arrival_rounds": 6,
+        "requests": {
+          "A": {
+            "arrival_round": 0,
+            "first_token_round": 0,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": 8,
+            "finish_round": 14,
+            "generation_rounds": [
+              0,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "decode_rounds": [
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14
+            ],
+            "max_generation_gap": 8
+          },
+          "B": {
+            "arrival_round": 0,
+            "first_token_round": 0,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": 8,
+            "finish_round": 15,
+            "generation_rounds": [
+              0,
+              8,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "decode_rounds": [
+              8,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "max_generation_gap": 8
+          },
+          "C": {
+            "arrival_round": 0,
+            "first_token_round": 1,
+            "first_token_wait_rounds": 1,
+            "first_decode_round": 9,
+            "finish_round": 9,
+            "generation_rounds": [
+              1,
+              9
+            ],
+            "decode_rounds": [
+              9
+            ],
+            "max_generation_gap": 8
+          },
+          "D1": {
+            "arrival_round": 2,
+            "first_token_round": 2,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": null,
+            "finish_round": 2,
+            "generation_rounds": [
+              2
+            ],
+            "decode_rounds": [],
+            "max_generation_gap": 0
+          },
+          "D2": {
+            "arrival_round": 3,
+            "first_token_round": 3,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": null,
+            "finish_round": 3,
+            "generation_rounds": [
+              3
+            ],
+            "decode_rounds": [],
+            "max_generation_gap": 0
+          },
+          "D3": {
+            "arrival_round": 4,
+            "first_token_round": 4,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": null,
+            "finish_round": 4,
+            "generation_rounds": [
+              4
+            ],
+            "decode_rounds": [],
+            "max_generation_gap": 0
+          },
+          "D4": {
+            "arrival_round": 5,
+            "first_token_round": 5,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": null,
+            "finish_round": 5,
+            "generation_rounds": [
+              5
+            ],
+            "decode_rounds": [],
+            "max_generation_gap": 0
+          },
+          "D5": {
+            "arrival_round": 6,
+            "first_token_round": 6,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": null,
+            "finish_round": 6,
+            "generation_rounds": [
+              6
+            ],
+            "decode_rounds": [],
+            "max_generation_gap": 0
+          },
+          "D6": {
+            "arrival_round": 7,
+            "first_token_round": 7,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": null,
+            "finish_round": 7,
+            "generation_rounds": [
+              7
+            ],
+            "decode_rounds": [],
+            "max_generation_gap": 0
+          }
+        },
+        "trace": [
+          {
+            "round": 0,
+            "phase": "prefill",
+            "running_before": [],
+            "waiting_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "selected": [
+              "A",
+              "B"
+            ],
+            "running_after": [
+              "A",
+              "B"
+            ],
+            "completion_counts_after": {
+              "A": 1,
+              "B": 1,
+              "C": 0
+            }
+          },
+          {
+            "round": 1,
+            "phase": "prefill",
+            "running_before": [
+              "A",
+              "B"
+            ],
+            "waiting_before": [
+              "C"
+            ],
+            "selected": [
+              "C"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 1,
+              "B": 1,
+              "C": 1
+            }
+          },
+          {
+            "round": 2,
+            "phase": "prefill",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [
+              "D1"
+            ],
+            "selected": [
+              "D1"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 1,
+              "B": 1,
+              "C": 1,
+              "D1": 1
+            }
+          },
+          {
+            "round": 3,
+            "phase": "prefill",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [
+              "D2"
+            ],
+            "selected": [
+              "D2"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 1,
+              "B": 1,
+              "C": 1,
+              "D1": 1,
+              "D2": 1
+            }
+          },
+          {
+            "round": 4,
+            "phase": "prefill",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [
+              "D3"
+            ],
+            "selected": [
+              "D3"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 1,
+              "B": 1,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1
+            }
+          },
+          {
+            "round": 5,
+            "phase": "prefill",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [
+              "D4"
+            ],
+            "selected": [
+              "D4"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 1,
+              "B": 1,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1
+            }
+          },
+          {
+            "round": 6,
+            "phase": "prefill",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [
+              "D5"
+            ],
+            "selected": [
+              "D5"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 1,
+              "B": 1,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1
+            }
+          },
+          {
+            "round": 7,
+            "phase": "prefill",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [
+              "D6"
+            ],
+            "selected": [
+              "D6"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 1,
+              "B": 1,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 8,
+            "phase": "decode",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "A",
+              "B"
+            ],
+            "running_after": [
+              "C",
+              "A",
+              "B"
+            ],
+            "completion_counts_after": {
+              "A": 2,
+              "B": 2,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 9,
+            "phase": "decode",
+            "running_before": [
+              "C",
+              "A",
+              "B"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "C",
+              "A"
+            ],
+            "running_after": [
+              "B",
+              "A"
+            ],
+            "completion_counts_after": {
+              "A": 3,
+              "B": 2,
+              "C": 2,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 10,
+            "phase": "decode",
+            "running_before": [
+              "B",
+              "A"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "B",
+              "A"
+            ],
+            "running_after": [
+              "B",
+              "A"
+            ],
+            "completion_counts_after": {
+              "A": 4,
+              "B": 3,
+              "C": 2,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 11,
+            "phase": "decode",
+            "running_before": [
+              "B",
+              "A"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "B",
+              "A"
+            ],
+            "running_after": [
+              "B",
+              "A"
+            ],
+            "completion_counts_after": {
+              "A": 5,
+              "B": 4,
+              "C": 2,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 12,
+            "phase": "decode",
+            "running_before": [
+              "B",
+              "A"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "B",
+              "A"
+            ],
+            "running_after": [
+              "B",
+              "A"
+            ],
+            "completion_counts_after": {
+              "A": 6,
+              "B": 5,
+              "C": 2,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 13,
+            "phase": "decode",
+            "running_before": [
+              "B",
+              "A"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "B",
+              "A"
+            ],
+            "running_after": [
+              "B",
+              "A"
+            ],
+            "completion_counts_after": {
+              "A": 7,
+              "B": 6,
+              "C": 2,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 14,
+            "phase": "decode",
+            "running_before": [
+              "B",
+              "A"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "B",
+              "A"
+            ],
+            "running_after": [
+              "B"
+            ],
+            "completion_counts_after": {
+              "A": 8,
+              "B": 7,
+              "C": 2,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 15,
+            "phase": "decode",
+            "running_before": [
+              "B"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "B"
+            ],
+            "running_after": [],
+            "completion_counts_after": {
+              "A": 8,
+              "B": 8,
+              "C": 2,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "strategy": {
+        "decode_policy": "round_robin",
+        "max_consecutive_prefills": 2,
+        "cache_eviction_policy": "lru",
+        "policy": "bounded_prefill"
+      },
+      "result": {
+        "policy": "bounded_prefill",
+        "decode_policy": "round_robin",
+        "leading_tokens": 8,
+        "short_arrival_rounds": 6,
+        "requests": {
+          "A": {
+            "arrival_round": 0,
+            "first_token_round": 0,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": 3,
+            "finish_round": 12,
+            "generation_rounds": [
+              0,
+              3,
+              6,
+              8,
+              9,
+              10,
+              11,
+              12
+            ],
+            "decode_rounds": [
+              3,
+              6,
+              8,
+              9,
+              10,
+              11,
+              12
+            ],
+            "max_generation_gap": 3
+          },
+          "B": {
+            "arrival_round": 0,
+            "first_token_round": 0,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": 3,
+            "finish_round": 13,
+            "generation_rounds": [
+              0,
+              3,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13
+            ],
+            "decode_rounds": [
+              3,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13
+            ],
+            "max_generation_gap": 5
+          },
+          "C": {
+            "arrival_round": 0,
+            "first_token_round": 1,
+            "first_token_wait_rounds": 1,
+            "first_decode_round": 6,
+            "finish_round": 6,
+            "generation_rounds": [
+              1,
+              6
+            ],
+            "decode_rounds": [
+              6
+            ],
+            "max_generation_gap": 5
+          },
+          "D1": {
+            "arrival_round": 2,
+            "first_token_round": 2,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": null,
+            "finish_round": 2,
+            "generation_rounds": [
+              2
+            ],
+            "decode_rounds": [],
+            "max_generation_gap": 0
+          },
+          "D2": {
+            "arrival_round": 3,
+            "first_token_round": 4,
+            "first_token_wait_rounds": 1,
+            "first_decode_round": null,
+            "finish_round": 4,
+            "generation_rounds": [
+              4
+            ],
+            "decode_rounds": [],
+            "max_generation_gap": 0
+          },
+          "D3": {
+            "arrival_round": 4,
+            "first_token_round": 4,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": null,
+            "finish_round": 4,
+            "generation_rounds": [
+              4
+            ],
+            "decode_rounds": [],
+            "max_generation_gap": 0
+          },
+          "D4": {
+            "arrival_round": 5,
+            "first_token_round": 5,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": null,
+            "finish_round": 5,
+            "generation_rounds": [
+              5
+            ],
+            "decode_rounds": [],
+            "max_generation_gap": 0
+          },
+          "D5": {
+            "arrival_round": 6,
+            "first_token_round": 7,
+            "first_token_wait_rounds": 1,
+            "first_decode_round": null,
+            "finish_round": 7,
+            "generation_rounds": [
+              7
+            ],
+            "decode_rounds": [],
+            "max_generation_gap": 0
+          },
+          "D6": {
+            "arrival_round": 7,
+            "first_token_round": 7,
+            "first_token_wait_rounds": 0,
+            "first_decode_round": null,
+            "finish_round": 7,
+            "generation_rounds": [
+              7
+            ],
+            "decode_rounds": [],
+            "max_generation_gap": 0
+          }
+        },
+        "trace": [
+          {
+            "round": 0,
+            "phase": "prefill",
+            "running_before": [],
+            "waiting_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "selected": [
+              "A",
+              "B"
+            ],
+            "running_after": [
+              "A",
+              "B"
+            ],
+            "completion_counts_after": {
+              "A": 1,
+              "B": 1,
+              "C": 0
+            }
+          },
+          {
+            "round": 1,
+            "phase": "prefill",
+            "running_before": [
+              "A",
+              "B"
+            ],
+            "waiting_before": [
+              "C"
+            ],
+            "selected": [
+              "C"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 1,
+              "B": 1,
+              "C": 1
+            }
+          },
+          {
+            "round": 2,
+            "phase": "prefill",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [
+              "D1"
+            ],
+            "selected": [
+              "D1"
+            ],
+            "running_after": [
+              "A",
+              "B",
+              "C"
+            ],
+            "completion_counts_after": {
+              "A": 1,
+              "B": 1,
+              "C": 1,
+              "D1": 1
+            }
+          },
+          {
+            "round": 3,
+            "phase": "decode",
+            "running_before": [
+              "A",
+              "B",
+              "C"
+            ],
+            "waiting_before": [
+              "D2"
+            ],
+            "selected": [
+              "A",
+              "B"
+            ],
+            "running_after": [
+              "C",
+              "A",
+              "B"
+            ],
+            "completion_counts_after": {
+              "A": 2,
+              "B": 2,
+              "C": 1,
+              "D1": 1,
+              "D2": 0
+            }
+          },
+          {
+            "round": 4,
+            "phase": "prefill",
+            "running_before": [
+              "C",
+              "A",
+              "B"
+            ],
+            "waiting_before": [
+              "D2",
+              "D3"
+            ],
+            "selected": [
+              "D2",
+              "D3"
+            ],
+            "running_after": [
+              "C",
+              "A",
+              "B"
+            ],
+            "completion_counts_after": {
+              "A": 2,
+              "B": 2,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1
+            }
+          },
+          {
+            "round": 5,
+            "phase": "prefill",
+            "running_before": [
+              "C",
+              "A",
+              "B"
+            ],
+            "waiting_before": [
+              "D4"
+            ],
+            "selected": [
+              "D4"
+            ],
+            "running_after": [
+              "C",
+              "A",
+              "B"
+            ],
+            "completion_counts_after": {
+              "A": 2,
+              "B": 2,
+              "C": 1,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1
+            }
+          },
+          {
+            "round": 6,
+            "phase": "decode",
+            "running_before": [
+              "C",
+              "A",
+              "B"
+            ],
+            "waiting_before": [
+              "D5"
+            ],
+            "selected": [
+              "C",
+              "A"
+            ],
+            "running_after": [
+              "B",
+              "A"
+            ],
+            "completion_counts_after": {
+              "A": 3,
+              "B": 2,
+              "C": 2,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 0
+            }
+          },
+          {
+            "round": 7,
+            "phase": "prefill",
+            "running_before": [
+              "B",
+              "A"
+            ],
+            "waiting_before": [
+              "D5",
+              "D6"
+            ],
+            "selected": [
+              "D5",
+              "D6"
+            ],
+            "running_after": [
+              "B",
+              "A"
+            ],
+            "completion_counts_after": {
+              "A": 3,
+              "B": 2,
+              "C": 2,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 8,
+            "phase": "decode",
+            "running_before": [
+              "B",
+              "A"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "B",
+              "A"
+            ],
+            "running_after": [
+              "B",
+              "A"
+            ],
+            "completion_counts_after": {
+              "A": 4,
+              "B": 3,
+              "C": 2,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 9,
+            "phase": "decode",
+            "running_before": [
+              "B",
+              "A"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "B",
+              "A"
+            ],
+            "running_after": [
+              "B",
+              "A"
+            ],
+            "completion_counts_after": {
+              "A": 5,
+              "B": 4,
+              "C": 2,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 10,
+            "phase": "decode",
+            "running_before": [
+              "B",
+              "A"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "B",
+              "A"
+            ],
+            "running_after": [
+              "B",
+              "A"
+            ],
+            "completion_counts_after": {
+              "A": 6,
+              "B": 5,
+              "C": 2,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 11,
+            "phase": "decode",
+            "running_before": [
+              "B",
+              "A"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "B",
+              "A"
+            ],
+            "running_after": [
+              "B",
+              "A"
+            ],
+            "completion_counts_after": {
+              "A": 7,
+              "B": 6,
+              "C": 2,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 12,
+            "phase": "decode",
+            "running_before": [
+              "B",
+              "A"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "B",
+              "A"
+            ],
+            "running_after": [
+              "B"
+            ],
+            "completion_counts_after": {
+              "A": 8,
+              "B": 7,
+              "C": 2,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          },
+          {
+            "round": 13,
+            "phase": "decode",
+            "running_before": [
+              "B"
+            ],
+            "waiting_before": [],
+            "selected": [
+              "B"
+            ],
+            "running_after": [],
+            "completion_counts_after": {
+              "A": 8,
+              "B": 8,
+              "C": 2,
+              "D1": 1,
+              "D2": 1,
+              "D3": 1,
+              "D4": 1,
+              "D5": 1,
+              "D6": 1
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

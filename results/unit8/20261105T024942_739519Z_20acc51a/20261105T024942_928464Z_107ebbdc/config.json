@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "workload": "arrivals",
+  "parameters": {
+    "arrival_count": 6,
+    "a_max_tokens": 8,
+    "arrivals_per_round": 1,
+    "budget": 5,
+    "short_prompt_tokens": 5
+  },
+  "strategies": [
+    {
+      "decode_policy": "original",
+      "max_consecutive_prefills": 2,
+      "policy": "prefill_first"
+    },
+    {
+      "decode_policy": "original",
+      "max_consecutive_prefills": 1,
+      "policy": "bounded_prefill"
+    },
+    {
+      "decode_policy": "original",
+      "max_consecutive_prefills": 2,
+      "policy": "bounded_prefill"
+    },
+    {
+      "decode_policy": "original",
+      "max_consecutive_prefills": 3,
+      "policy": "bounded_prefill"
+    }
+  ]
+}

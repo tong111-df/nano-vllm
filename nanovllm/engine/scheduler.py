@@ -7,16 +7,36 @@ if TYPE_CHECKING:
     from nanovllm.config import Config
 from nanovllm.engine.sequence import Sequence, SequenceStatus
 from nanovllm.engine.block_manager import BlockManager
+from nanovllm.engine.cache_policy import create_cache_policy
+
+
+class SchedulerNoProgressError(RuntimeError):
+    """No executable batch was found; callers must inspect the cause."""
 
 
 class Scheduler:
 
     def __init__(self, config: Config):
+        for field in ("max_num_seqs", "max_num_batched_tokens",
+                      "num_kvcache_blocks", "kvcache_block_size"):
+            value = getattr(config, field)
+            if type(value) is not int or value < 1:
+                raise ValueError(f"{field} must be a positive integer")
         self.max_num_seqs = config.max_num_seqs
         self.max_num_batched_tokens = config.max_num_batched_tokens
+        # CPU fixtures may omit the model limit; real Config always supplies it.
+        self.max_model_len = getattr(config, "max_model_len", None)
+        if self.max_model_len is not None and (
+            type(self.max_model_len) is not int or self.max_model_len < 1
+        ):
+            raise ValueError("max_model_len must be a positive integer")
         self.eos = config.eos
         self.block_size = config.kvcache_block_size
-        self.block_manager = BlockManager(config.num_kvcache_blocks, config.kvcache_block_size)
+        self.cache_eviction_policy = getattr(config, "cache_eviction_policy", "original")
+        self.block_manager = BlockManager(
+            config.num_kvcache_blocks, config.kvcache_block_size,
+            eviction_policy=create_cache_policy(self.cache_eviction_policy),
+        )
         self.waiting: deque[Sequence] = deque()
         self.running: deque[Sequence] = deque()
         self.scheduling_policy = getattr(
@@ -36,13 +56,39 @@ class Scheduler:
 
         self.consecutive_prefills = 0
 
+        self.decode_scheduling_policy = getattr(config, "decode_scheduling_policy", "original")
+        if self.decode_scheduling_policy not in ("original", "round_robin"):
+            raise ValueError("Unknown decode_scheduling_policy")
+
     def is_finished(self):
         return not self.waiting and not self.running
 
     def add(self, seq: Sequence):
+        # Waiting cannot help when even the entire pool cannot hold the prompt.
+        capacity = len(self.block_manager.blocks)
+        if seq.num_blocks > capacity:
+            raise ValueError(
+                f"prompt requires {seq.num_blocks} KV blocks, but the pool has {capacity}"
+            )
+        # Admission is conservative: do not depend on an early EOS to fit.
+        # The final output token is never fed back and needs no KV storage.
+        required_tokens = seq.num_prompt_tokens + seq.max_tokens - 1
+        if self.max_model_len is not None and required_tokens > self.max_model_len:
+            raise ValueError(
+                f"maximum generation requires {required_tokens} KV positions, "
+                f"but max_model_len is {self.max_model_len} (early EOS is not assumed)"
+            )
+        required_blocks = (required_tokens + self.block_size - 1) // self.block_size
+        if required_blocks > capacity:
+            raise ValueError(
+                f"maximum generation requires {required_blocks} KV blocks, "
+                f"but the pool has {capacity} (early EOS is not assumed)"
+            )
         self.waiting.append(seq)
 
     def schedule(self) -> tuple[list[Sequence], bool]:
+        if self.is_finished():
+            raise SchedulerNoProgressError("cannot schedule: no pending requests")
         scheduled_seqs = []
         num_batched_tokens = 0
         had_running = bool(self.running)
@@ -108,8 +154,17 @@ class Scheduler:
                 seq.is_prefill = False
                 self.block_manager.may_append(seq)
                 scheduled_seqs.append(seq)
-        assert scheduled_seqs
-        self.running.extendleft(reversed(scheduled_seqs))
+        if not scheduled_seqs:
+            bm = self.block_manager
+            raise SchedulerNoProgressError(
+                f"no runnable batch: waiting={len(self.waiting)}, "
+                f"running={len(self.running)}, free_blocks={len(bm.free_block_ids)}, "
+                f"used_blocks={len(bm.used_block_ids)}, total_blocks={len(bm.blocks)}"
+            )
+        if self.decode_scheduling_policy == "round_robin":
+            self.running.extend(scheduled_seqs)
+        else:
+            self.running.extendleft(reversed(scheduled_seqs))
         self.consecutive_prefills = 0
         return scheduled_seqs, False
 
@@ -120,6 +175,8 @@ class Scheduler:
         self.waiting.appendleft(seq)
 
     def postprocess(self, seqs: list[Sequence], token_ids: list[int], is_prefill: bool):
+        if len(token_ids) != len(seqs):
+            raise ValueError(f"expected {len(seqs)} output tokens, got {len(token_ids)}")
         for seq, token_id in zip(seqs, token_ids):
             self.block_manager.hash_blocks(seq)
             seq.num_cached_tokens += seq.num_scheduled_tokens

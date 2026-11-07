@@ -18,6 +18,8 @@ class Config:
     num_kvcache_blocks: int = -1
     scheduling_policy: str = "prefill_first"
     max_consecutive_prefills: int = 2
+    decode_scheduling_policy: str = "original"
+    cache_eviction_policy: str = "original"
 
     def __post_init__(self):
         assert os.path.isdir(self.model)

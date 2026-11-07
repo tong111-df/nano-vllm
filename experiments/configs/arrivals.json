@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "workload": "arrivals",
+  "parameters": {"arrival_count": 6, "a_max_tokens": 4, "arrivals_per_round": 1, "budget": 2},
+  "strategies": [
+    {"policy": "prefill_first", "decode_policy": "original", "max_consecutive_prefills": 2},
+    {"policy": "bounded_prefill", "decode_policy": "original", "max_consecutive_prefills": 2}
+  ]
+}

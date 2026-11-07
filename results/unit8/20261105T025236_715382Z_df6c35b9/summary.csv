@@ -1,0 +1,13 @@
+﻿budget,decode_policy,max_consecutive_prefills,policy,A_first_decode_round,A_max_generation_gap,A_finish_round,B_max_first_token_wait,B_mean_first_token_wait,max_waiting_before,max_waiting_after,waiting_after_last_arrival_round,waiting_clear_round_after_arrivals,all_finished_round,report,case_index
+1,original,2,prefill_first,31,31,37,24,14.0,5,5,5,30,37,20261105T025236_724381Z_2c21d3c6/report.json,0
+1,original,1,bounded_prefill,2,2,14,31,20.5,6,6,6,37,37,20261105T025236_724381Z_2c21d3c6/report.json,1
+1,original,2,bounded_prefill,3,3,21,31,19.666666666666668,6,6,6,37,37,20261105T025236_724381Z_2c21d3c6/report.json,2
+1,original,3,bounded_prefill,4,4,28,31,18.666666666666668,6,5,5,37,37,20261105T025236_724381Z_2c21d3c6/report.json,3
+2,original,2,prefill_first,19,19,25,12,7.0,5,4,4,18,25,20261105T025236_838137Z_930d3071/report.json,0
+2,original,1,bounded_prefill,2,2,14,19,12.833333333333334,5,5,5,25,25,20261105T025236_838137Z_930d3071/report.json,1
+2,original,2,bounded_prefill,3,3,21,19,11.333333333333334,5,5,5,25,25,20261105T025236_838137Z_930d3071/report.json,2
+2,original,3,bounded_prefill,4,4,25,17,9.5,5,5,5,23,25,20261105T025236_838137Z_930d3071/report.json,3
+5,original,2,prefill_first,7,7,13,0,0.0,1,0,0,6,13,20261105T025236_898632Z_ae578b22/report.json,0
+5,original,1,bounded_prefill,2,2,13,5,2.5,3,3,3,11,13,20261105T025236_898632Z_ae578b22/report.json,1
+5,original,2,bounded_prefill,3,3,13,2,1.0,2,2,2,8,13,20261105T025236_898632Z_ae578b22/report.json,2
+5,original,3,bounded_prefill,4,4,13,1,0.5,2,1,1,7,13,20261105T025236_898632Z_ae578b22/report.json,3

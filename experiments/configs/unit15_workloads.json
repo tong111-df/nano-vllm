@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "block_counts": [4, 6],
+  "policies": ["original", "lru"],
+  "workloads": {
+    "hot": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    "scan": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "mixed": [0, 1, 2, 0, 3, 4, 0, 5, 6, 0, 7, 8]
+  }
+}

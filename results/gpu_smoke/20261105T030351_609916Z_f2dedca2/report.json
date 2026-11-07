@@ -1,0 +1,49 @@
+{
+  "created_at_utc": "2026-11-05T03:03:51.609916+00:00",
+  "environment": {
+    "python": "3.12.13",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "packages": {
+      "torch": null,
+      "triton": null,
+      "transformers": null,
+      "flash-attn": null,
+      "numpy": "2.2.6",
+      "xxhash": "3.5.0",
+      "safetensors": null,
+      "tqdm": null
+    },
+    "nvidia_smi": "name, driver_version, memory.total [MiB]\nNVIDIA GeForce RTX 5060 Laptop GPU, 592.19, 8151 MiB"
+  },
+  "requested": {
+    "run": false,
+    "model": null,
+    "policy": "bounded_prefill",
+    "decode_policy": "round_robin"
+  },
+  "source_sha256": {
+    "nanovllm/__init__.py": "18b834b75e18d5c322b825533931c10f8d593eeeb6586a1d79b7181fc7f64547",
+    "nanovllm/config.py": "69ab05e9c640ef4145fd9af474672411ef46bfa687b03b53f47714bc17387254",
+    "nanovllm/engine/block_manager.py": "5cf5826673f93e94bb8b7fddef60cfc9063dbd18ee7f7171c3210fb471b3082f",
+    "nanovllm/engine/llm_engine.py": "2d6ea211ab6a94f354d9205b26f7ab09986dc6b82a70a189e7ae4486428bc874",
+    "nanovllm/engine/model_runner.py": "8ff1aeb1e5fb907f6e685a48eb3122cbdfdfe44f16825826fc9de34aa533686a",
+    "nanovllm/engine/scheduler.py": "8ff3556d3c9ce964aa56997c2a83d06a5280edb636e7ae384d94be81865e4319",
+    "nanovllm/engine/sequence.py": "b29f102fb87b3b86aa12079d04f7ef951fd065c75f278f16316914f70cf2b661",
+    "nanovllm/layers/activation.py": "ff12a757110eb2dafecbe447cd912159cdc40bb1fbf1b6739422b3315b190d04",
+    "nanovllm/layers/attention.py": "1f291b29a28aac1d6a21e30be1ada49ffbca04a965057086921e6ad457c2ed1d",
+    "nanovllm/layers/embed_head.py": "bc4cdaafb34f269ac70ebfd841886001508611501914a53cfcd7dab1aba47d97",
+    "nanovllm/layers/layernorm.py": "4ab44acf573c3395beb1078ec99e6effe952c6db7afda7092e4ab0d361bc6088",
+    "nanovllm/layers/linear.py": "cf9c3bfac3103e20637189d931403ff01b3db3df35e8aefd66c169b272a8d24b",
+    "nanovllm/layers/rotary_embedding.py": "22debbc65a74559183d83680a247cb9a7dc4acf386c65e71f38a1208c868015c",
+    "nanovllm/layers/sampler.py": "4bcc321dca3d963430b943f397ce3859dfccd4a684ae8cb452201f744c967e83",
+    "nanovllm/llm.py": "2c5e4ecbef0b0bd9bdee3bc956ec4a3ece1838c0e79393e64b182f229e863d84",
+    "nanovllm/models/qwen3.py": "afa49e591df57d529383fc21f19fdc420468d0271b4a4a6382f3dc5385f44c2c",
+    "nanovllm/sampling_params.py": "8f24b75f8dbbbbaa64c622a8205133f7f886a4ead041b702c92da5fe6a43e8d4",
+    "nanovllm/utils/context.py": "ab719d3035a5c8beaa5aa69e25dcc253098f6e6f8bdefb8d296e2e55ff388426",
+    "nanovllm/utils/loader.py": "8291547bf33fa87941f75cc2e3c9d3156d07f5b5aac23eac12733099348831e0",
+    "experiments/gpu_smoke.py": "b0d6364c94c6788863c7320af897e7e7ea8036f066e797b1cbb224c16a315af3"
+  },
+  "status": "environment_recorded_gpu_not_run",
+  "trace": [],
+  "scope": "Compatibility smoke only; not a performance or numerical-equivalence benchmark."
+}

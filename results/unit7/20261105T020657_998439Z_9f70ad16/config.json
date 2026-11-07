@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "workload": "mixed",
+  "parameters": {
+    "leading_tokens": 8,
+    "short_arrival_rounds": 6,
+    "budget": 8
+  },
+  "strategies": [
+    {
+      "decode_policy": "original",
+      "max_consecutive_prefills": 2,
+      "policy": "prefill_first"
+    },
+    {
+      "decode_policy": "original",
+      "max_consecutive_prefills": 2,
+      "policy": "bounded_prefill"
+    },
+    {
+      "decode_policy": "round_robin",
+      "max_consecutive_prefills": 2,
+      "policy": "prefill_first"
+    },
+    {
+      "decode_policy": "round_robin",
+      "max_consecutive_prefills": 2,
+      "policy": "bounded_prefill"
+    }
+  ]
+}

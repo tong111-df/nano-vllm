@@ -3,6 +3,7 @@ import xxhash
 import numpy as np
 
 from nanovllm.engine.sequence import Sequence
+from nanovllm.engine.cache_policy import CacheEvictionPolicy, OriginalFreeQueuePolicy
 
 
 class Block:
@@ -25,12 +26,14 @@ class Block:
 
 class BlockManager:
 
-    def __init__(self, num_blocks: int, block_size: int):
+    def __init__(self, num_blocks: int, block_size: int, *,
+                 eviction_policy: CacheEvictionPolicy | None = None):
         self.block_size = block_size
         self.blocks: list[Block] = [Block(i) for i in range(num_blocks)]
         self.hash_to_block_id: dict[int, int] = dict()
         self.free_block_ids: deque[int] = deque(range(num_blocks))
         self.used_block_ids: set[int] = set()
+        self.eviction_policy = eviction_policy if eviction_policy is not None else OriginalFreeQueuePolicy()
 
     @classmethod
     def compute_hash(cls, token_ids: list[int], prefix: int = -1):
@@ -41,19 +44,32 @@ class BlockManager:
         return h.intdigest()
 
     def _allocate_block(self) -> int:
-        block_id = self.free_block_ids.popleft()
+        if not self.free_block_ids:
+            raise RuntimeError("no free KV block available for recycling")
+        block_id = self.eviction_policy.select_victim(self.free_block_ids)
+        if (type(block_id) is not int or not 0 <= block_id < len(self.blocks)
+                or self.blocks[block_id].ref_count != 0 or block_id in self.used_block_ids):
+            raise RuntimeError("cache policy selected a block that is not free")
+        # Keep the original policy's O(1) pop; future policies may select
+        # another candidate. Policy hooks must not mutate this queue.
+        if block_id == self.free_block_ids[0]:
+            self.free_block_ids.popleft()
+        else:
+            self.free_block_ids.remove(block_id)
         block = self.blocks[block_id]
         assert block.ref_count == 0
         if block.hash != -1 and self.hash_to_block_id.get(block.hash) == block_id:
             del self.hash_to_block_id[block.hash]
         block.reset()
         self.used_block_ids.add(block_id)
+        self.eviction_policy.on_acquire(block_id)
         return block_id
 
     def _deallocate_block(self, block_id: int):
         assert self.blocks[block_id].ref_count == 0
         self.used_block_ids.remove(block_id)
         self.free_block_ids.append(block_id)
+        self.eviction_policy.on_release(block_id)
 
     def can_allocate(self, seq: Sequence) -> int:
         h = -1
@@ -87,6 +103,7 @@ class BlockManager:
                 self.free_block_ids.remove(block_id)
                 self.used_block_ids.add(block_id)
             seq.block_table.append(block_id)
+            self.eviction_policy.on_acquire(block_id)
         for i in range(num_cached_blocks, seq.num_blocks):
             seq.block_table.append(self._allocate_block())
         seq.num_cached_tokens = num_cached_blocks * self.block_size

@@ -1,0 +1,71 @@
+{
+  "created_at_utc": "2026-11-06T01:36:34.505359+00:00",
+  "python": "3.12.3",
+  "platform": "Linux-6.18.54.1-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "import_passed": true,
+  "checks": [
+    {
+      "stage": "prefill",
+      "dtype": "torch.float16",
+      "max_abs_error": 0.00012296438217163086,
+      "kv_write_exact": true,
+      "atol": 0.02,
+      "rtol": 0.02,
+      "status": "passed"
+    },
+    {
+      "stage": "prefix_prefill",
+      "dtype": "torch.float16",
+      "max_abs_error": 8.799135684967041e-05,
+      "kv_write_exact": true,
+      "atol": 0.02,
+      "rtol": 0.02,
+      "status": "passed"
+    },
+    {
+      "stage": "decode",
+      "dtype": "torch.float16",
+      "max_abs_error": 9.000301361083984e-05,
+      "kv_write_exact": true,
+      "atol": 0.02,
+      "rtol": 0.02,
+      "status": "passed"
+    },
+    {
+      "stage": "prefill",
+      "dtype": "torch.bfloat16",
+      "max_abs_error": 0.0008285641670227051,
+      "kv_write_exact": true,
+      "atol": 0.02,
+      "rtol": 0.02,
+      "status": "passed"
+    },
+    {
+      "stage": "prefix_prefill",
+      "dtype": "torch.bfloat16",
+      "max_abs_error": 0.0006757974624633789,
+      "kv_write_exact": true,
+      "atol": 0.02,
+      "rtol": 0.02,
+      "status": "passed"
+    },
+    {
+      "stage": "decode",
+      "dtype": "torch.bfloat16",
+      "max_abs_error": 0.0006547421216964722,
+      "kv_write_exact": true,
+      "atol": 0.02,
+      "rtol": 0.02,
+      "status": "passed"
+    }
+  ],
+  "status": "attention_probe_passed",
+  "scope": "Tiny GQA forward cases with FP32 mathematical reference and KV writes; not full model correctness or performance.",
+  "versions": {
+    "torch": "2.8.0+cu128",
+    "triton": "3.4.0",
+    "flash-attn": "2.8.3"
+  },
+  "device": "NVIDIA GeForce RTX 5060 Laptop GPU",
+  "current_stage": "torch.bfloat16/decode"
+}

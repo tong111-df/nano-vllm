@@ -10,12 +10,14 @@ from nanovllm.engine.sequence import Sequence, SequenceStatus
 from nanovllm.engine.scheduler import Scheduler
 
 
-def make_scheduler(budget=512, blocks=4, *, policy="prefill_first", limit=2):
+def make_scheduler(budget=512, blocks=4, *, policy="prefill_first", limit=2,
+                   decode_policy="original"):
     # Match Sequence.block_size; do not shrink it independently.
     return Scheduler(SimpleNamespace(
         max_num_seqs=4, max_num_batched_tokens=budget, eos=99,
         kvcache_block_size=256, num_kvcache_blocks=blocks,
         scheduling_policy=policy, max_consecutive_prefills=limit,
+        decode_scheduling_policy=decode_policy,
     ))
 
 
@@ -193,8 +195,10 @@ def test_scheduler_automatically_preempts():
     assert_released(scheduler, b)
 
 
-def test_bounded_decode_can_preempt_another_running_request():
-    scheduler = make_scheduler(budget=512, blocks=3, policy="bounded_prefill")
+@pytest.mark.parametrize('decode_policy', ['original', 'round_robin'])
+def test_bounded_decode_can_preempt_another_running_request(decode_policy):
+    scheduler = make_scheduler(budget=512, blocks=3, policy="bounded_prefill",
+                               decode_policy=decode_policy)
     a = Sequence(list(range(256)), SamplingParams(max_tokens=2))
     b = Sequence([500], SamplingParams(max_tokens=2))
     scheduler.add(a)

@@ -1,0 +1,444 @@
+{
+  "python": "3.12.13",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "config": {
+    "block_size": 256,
+    "blocks": 4,
+    "budget": 1024,
+    "max_num_seqs": 1
+  },
+  "access_definition": "Successful block reference acquisition; probes, releases and per-step attention reads do not refresh it.",
+  "units": "CPU metadata and prompt token counts; synthetic output; no GPU timing.",
+  "source_sha256": {
+    "experiments/day2_baseline.py": "f2c0f26cfd9152e059c34f72edf14cca1a465b8aa364914d3c14e1aba54bbdac",
+    "experiments/day3_compare.py": "427df94674a3a742e4676c18a2af9e0cad297f44c418e86a5b2a95e54b6a942c",
+    "experiments/day4_arrivals.py": "1e0e33eb720ba974c30e960e5ed217545c9e9aa7f4f4fdcf8c1eba9589df19a7",
+    "experiments/gpu_smoke.py": "4238ed48d25edeaab6670dd15ef858cf14fce0af7996abfd2cac5ecf1835d61b",
+    "experiments/run.py": "c78b909c98f342ad7dd1c912f806b44cf5a623850d86d01a45fbb041c60ce612",
+    "experiments/unit11_cache_lifecycle.py": "3e3e417ee70e9255b5ee5b24aee9b4cf14710b7bedf272c62cda16d4b53c40c6",
+    "experiments/unit12_reclaim_order.py": "285940df9ad8ce03033b44e433d95d5eb32b40234c387f65008e0ad5bfe56e83",
+    "experiments/unit13_lru_compare.py": "7ebf435e3c3908d26544c178f3f7782d155432ddfc3bb0634ddd47a12c5665cf",
+    "experiments/unit5_fairness.py": "79a356f42b0250dcf812a787dc5dafa65d250c178dd5e128bcde1956f676d81d",
+    "experiments/unit8_sweep.py": "e4f8317b14814dfa30b46300ad74a2d18ea53b0aa3ba13c350d60e5a3117bf32",
+    "nanovllm/__init__.py": "18b834b75e18d5c322b825533931c10f8d593eeeb6586a1d79b7181fc7f64547",
+    "nanovllm/config.py": "d855a8d29f77e2e5e59179537a0f9c489ce0b9fa1a554966a9102e0ca14eaeb3",
+    "nanovllm/engine/block_manager.py": "f2cbf992f78a1e2330ad96f604e3bb79cb7e6b9f4ba491d324542daf6fe77761",
+    "nanovllm/engine/cache_policy.py": "8488166b8aaa1be7faa923ff1c11b7a85f685c391c157c67c87e652984c6bafe",
+    "nanovllm/engine/llm_engine.py": "2d6ea211ab6a94f354d9205b26f7ab09986dc6b82a70a189e7ae4486428bc874",
+    "nanovllm/engine/model_runner.py": "8ff1aeb1e5fb907f6e685a48eb3122cbdfdfe44f16825826fc9de34aa533686a",
+    "nanovllm/engine/scheduler.py": "fabf35e39524524421ddbc0272a36716c2af2de53d0ad8ac0c3b4c3b1e010eb5",
+    "nanovllm/engine/sequence.py": "b29f102fb87b3b86aa12079d04f7ef951fd065c75f278f16316914f70cf2b661",
+    "nanovllm/layers/activation.py": "ff12a757110eb2dafecbe447cd912159cdc40bb1fbf1b6739422b3315b190d04",
+    "nanovllm/layers/attention.py": "1f291b29a28aac1d6a21e30be1ada49ffbca04a965057086921e6ad457c2ed1d",
+    "nanovllm/layers/embed_head.py": "bc4cdaafb34f269ac70ebfd841886001508611501914a53cfcd7dab1aba47d97",
+    "nanovllm/layers/layernorm.py": "4ab44acf573c3395beb1078ec99e6effe952c6db7afda7092e4ab0d361bc6088",
+    "nanovllm/layers/linear.py": "cf9c3bfac3103e20637189d931403ff01b3db3df35e8aefd66c169b272a8d24b",
+    "nanovllm/layers/rotary_embedding.py": "22debbc65a74559183d83680a247cb9a7dc4acf386c65e71f38a1208c868015c",
+    "nanovllm/layers/sampler.py": "4bcc321dca3d963430b943f397ce3859dfccd4a684ae8cb452201f744c967e83",
+    "nanovllm/llm.py": "2c5e4ecbef0b0bd9bdee3bc956ec4a3ece1838c0e79393e64b182f229e863d84",
+    "nanovllm/models/qwen3.py": "afa49e591df57d529383fc21f19fdc420468d0271b4a4a6382f3dc5385f44c2c",
+    "nanovllm/sampling_params.py": "8f24b75f8dbbbbaa64c622a8205133f7f886a4ead041b702c92da5fe6a43e8d4",
+    "nanovllm/utils/context.py": "ab719d3035a5c8beaa5aa69e25dcc253098f6e6f8bdefb8d296e2e55ff388426",
+    "nanovllm/utils/loader.py": "8291547bf33fa87941f75cc2e3c9d3156d07f5b5aac23eac12733099348831e0",
+    "requirements-cpu.txt": "709fcd6e643401ed96a708e8567775ea6aa0b76b27c7a92667cd1499f42af6ce"
+  },
+  "cases": [
+    {
+      "cache_policy": "original",
+      "C_recycled_block": 3,
+      "D_cached_tokens": 256,
+      "D_computed_prompt_tokens": 1,
+      "trace": [
+        {
+          "event": "A_prefill_done",
+          "free": [
+            2,
+            3
+          ],
+          "used": [
+            0,
+            1
+          ],
+          "ref_counts": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "tables": {
+            "A": [
+              0,
+              1
+            ]
+          },
+          "A_prefix_index": 0,
+          "last_access": {}
+        },
+        {
+          "event": "B_finished",
+          "free": [
+            3,
+            2
+          ],
+          "used": [
+            0,
+            1
+          ],
+          "ref_counts": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "tables": {
+            "A": [
+              0,
+              1
+            ],
+            "B": []
+          },
+          "A_prefix_index": 0,
+          "last_access": {}
+        },
+        {
+          "event": "A_finished",
+          "free": [
+            3,
+            2,
+            1,
+            0
+          ],
+          "used": [],
+          "ref_counts": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "tables": {
+            "A": [],
+            "B": []
+          },
+          "A_prefix_index": 0,
+          "last_access": {}
+        },
+        {
+          "event": "C_allocated",
+          "free": [
+            2,
+            1,
+            0
+          ],
+          "used": [
+            3
+          ],
+          "ref_counts": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "tables": {
+            "A": [],
+            "B": [],
+            "C": [
+              3
+            ]
+          },
+          "A_prefix_index": 0,
+          "last_access": {}
+        },
+        {
+          "event": "C_finished",
+          "free": [
+            2,
+            1,
+            0,
+            3
+          ],
+          "used": [],
+          "ref_counts": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "tables": {
+            "A": [],
+            "B": [],
+            "C": []
+          },
+          "A_prefix_index": 0,
+          "last_access": {}
+        },
+        {
+          "event": "D_scheduled",
+          "free": [
+            1,
+            3
+          ],
+          "used": [
+            0,
+            2
+          ],
+          "ref_counts": [
+            1,
+            0,
+            1,
+            0
+          ],
+          "tables": {
+            "A": [],
+            "B": [],
+            "C": [],
+            "D": [
+              0,
+              2
+            ]
+          },
+          "A_prefix_index": 0,
+          "last_access": {}
+        },
+        {
+          "event": "D_finished",
+          "free": [
+            1,
+            3,
+            2,
+            0
+          ],
+          "used": [],
+          "ref_counts": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "tables": {
+            "A": [],
+            "B": [],
+            "C": [],
+            "D": []
+          },
+          "A_prefix_index": 0,
+          "last_access": {}
+        }
+      ]
+    },
+    {
+      "cache_policy": "lru",
+      "C_recycled_block": 0,
+      "D_cached_tokens": 0,
+      "D_computed_prompt_tokens": 257,
+      "trace": [
+        {
+          "event": "A_prefill_done",
+          "free": [
+            2,
+            3
+          ],
+          "used": [
+            0,
+            1
+          ],
+          "ref_counts": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "tables": {
+            "A": [
+              0,
+              1
+            ]
+          },
+          "A_prefix_index": 0,
+          "last_access": {
+            "0": 1,
+            "1": 2
+          }
+        },
+        {
+          "event": "B_finished",
+          "free": [
+            3,
+            2
+          ],
+          "used": [
+            0,
+            1
+          ],
+          "ref_counts": [
+            1,
+            1,
+            0,
+            0
+          ],
+          "tables": {
+            "A": [
+              0,
+              1
+            ],
+            "B": []
+          },
+          "A_prefix_index": 0,
+          "last_access": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 4
+          }
+        },
+        {
+          "event": "A_finished",
+          "free": [
+            3,
+            2,
+            1,
+            0
+          ],
+          "used": [],
+          "ref_counts": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "tables": {
+            "A": [],
+            "B": []
+          },
+          "A_prefix_index": 0,
+          "last_access": {
+            "0": 1,
+            "1": 2,
+            "2": 3,
+            "3": 4
+          }
+        },
+        {
+          "event": "C_allocated",
+          "free": [
+            3,
+            2,
+            1
+          ],
+          "used": [
+            0
+          ],
+          "ref_counts": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "tables": {
+            "A": [],
+            "B": [],
+            "C": [
+              0
+            ]
+          },
+          "A_prefix_index": null,
+          "last_access": {
+            "0": 5,
+            "1": 2,
+            "2": 3,
+            "3": 4
+          }
+        },
+        {
+          "event": "C_finished",
+          "free": [
+            3,
+            2,
+            1,
+            0
+          ],
+          "used": [],
+          "ref_counts": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "tables": {
+            "A": [],
+            "B": [],
+            "C": []
+          },
+          "A_prefix_index": null,
+          "last_access": {
+            "0": 5,
+            "1": 2,
+            "2": 3,
+            "3": 4
+          }
+        },
+        {
+          "event": "D_scheduled",
+          "free": [
+            3,
+            0
+          ],
+          "used": [
+            1,
+            2
+          ],
+          "ref_counts": [
+            0,
+            1,
+            1,
+            0
+          ],
+          "tables": {
+            "A": [],
+            "B": [],
+            "C": [],
+            "D": [
+              1,
+              2
+            ]
+          },
+          "A_prefix_index": null,
+          "last_access": {
+            "0": 5,
+            "1": 6,
+            "2": 7,
+            "3": 4
+          }
+        },
+        {
+          "event": "D_finished",
+          "free": [
+            3,
+            0,
+            2,
+            1
+          ],
+          "used": [],
+          "ref_counts": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "tables": {
+            "A": [],
+            "B": [],
+            "C": [],
+            "D": []
+          },
+          "A_prefix_index": 1,
+          "last_access": {
+            "0": 5,
+            "1": 6,
+            "2": 7,
+            "3": 4
+          }
+        }
+      ]
+    }
+  ]
+}
